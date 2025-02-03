@@ -1,2 +1,2 @@
-![mobile layout (2)](https://github.com/user-attachments/assets/3eb69f0a-9920-4364-9e72-97e60c027e52)
-![desktop](https://github.com/user-attachments/assets/4266cad9-c96e-4e0c-b3f3-786d1bd5ebd5)
+![desktop layout](https://github.com/user-attachments/assets/4baed636-0c09-4789-97e6-b68d717f5b4d)
+![mobile layout](https://github.com/user-attachments/assets/76172ba5-b7ad-4a76-926f-ae1cde925d47)
