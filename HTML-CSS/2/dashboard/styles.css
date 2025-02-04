@@ -1,0 +1,236 @@
+body{
+    display: flex;
+    flex-direction: column;
+    font-family: poppins;
+}
+input{
+    all: unset;
+    height: 60px;
+    width: 70%;
+    background-color: #E1E8F0;
+    border-radius: 5px;
+    padding-left: 20px;
+}
+
+/* Navbar styling */
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+#nav_links{
+    display: flex;
+    flex-direction: row;
+}
+
+#account{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+}
+#cart{
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
+
+}
+
+#nav_btn{
+    all: unset;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    margin-right: 50px;
+    cursor: pointer;
+    color: #616161;
+}
+
+#nav_btn img{
+    padding-right: 10px;
+}
+
+#potrait{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-size: cover;
+    box-shadow: 0 6px 4px rgba(0, 0, 0, 0.2);;
+
+}
+
+/* main styling */
+main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* Account div styling */
+#progress{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+  
+.long-dash {
+    display: inline-block;
+    border-bottom: 2px solid #2F82CE;
+    width: 50px;text-decoration: overline;
+    text-decoration-thickness: 3px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+#form{
+    display: flex;
+    flex-direction: column;
+    background-color: #F6FAFD;
+    width: 42%;
+    margin-left: 2%;
+    margin-top: 2%;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+#order_summary{
+    background-color: #F6FAFD;
+    width: 42%;
+    margin-right: 2%;
+    margin-top: 2%;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+#order_status{
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+/* Order summary styling */
+
+#sony{
+    height: 300px;
+    width: 100%;
+    background-size: cover;
+    margin-bottom: 20px;
+}
+
+#item{
+    display: flex;
+    flex-direction: row;
+    padding-right: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+#counter{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 20%;
+    height: 30px;
+}
+
+#discount{
+    display: flex;
+    flex-direction: row;
+    padding-right: 10px;
+    justify-content: space-between;
+}
+
+#tally{
+    display: flex;
+    flex-direction: row;
+    padding-right: 10px;
+    justify-content: space-between;
+}
+
+#account_form{
+    display: flex;
+    justify-content: end;
+    margin-bottom: 20%;
+    margin-top: 2%;
+
+}
+
+hr{
+    border-color: #bebebe3a;
+}
+br{
+    margin: unset;
+    padding: unset;
+}
+#icon{
+    height: 20px;
+    width: 20px;
+}
+/* Button styling */
+
+
+
+#account_btn img{
+    height: 20px;
+    width: 20px;
+}
+#primary_btn{
+    all: unset;
+    margin: 5px;
+    margin-left: 20px;
+    padding: 10px;
+    background-color: #2F82CE;
+    color: white;
+    border-radius: 5px;
+    box-shadow: 0 6px 4px rgba(0, 0, 0, 0.2);;
+
+}
+
+#secondary_btn{
+    all: unset;
+    margin: 5px;
+    padding: 10px;
+    color: #616161;
+}
+
+#checked_input{
+    all: unset;
+    height: 60px;
+    width: 97%;
+    background-color: #E1E8F0;
+    border-radius: 5px;
+    padding-left: 20px;
+    background-image: url('./assets/check_circle.svg'); /* Add the icon */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
+#apply{
+    all: unset;
+    display: flex;
+    flex-direction: row;
+    border: 2px solid #2F82CE;
+    padding: 10px;
+    border-radius: 5px;
+    width: 20%;
+    justify-content: center;
+    align-items: center;
+}
+
+#counter_btn{
+    all: unset;
+    background-color: #E1E8F0;
+    height: 25px;
+    width: 25px;
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 20px;
+    margin-left: 20px;
+}

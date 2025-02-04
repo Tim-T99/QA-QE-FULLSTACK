@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introduction</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav>
+        <div>
+            <p><strong>Brand</strong></p>
+        </div>
+        <div id="nav_links">            
+            <a href="/" id="nav_btn">Home</a>
+            <a href="/" id="nav_btn">Shop</a> 
+            <a href="/" id="nav_btn">Contact</a> 
+            <a href="/" id="nav_btn">Help</a>         
+        </div>
+        <div id="account">
+            <button id="nav_btn">
+              Account
+              <img src="./assets/drop down.svg" alt="" >
+            </button>
+            <button id="nav_btn">
+                <img src="./assets/shopping_bag.svg" alt="" >
+                <p>3 items</p>
+            </button>
+            <img src="./assets/potrait.jpg" alt="" id="potrait">
+
+        </div>
+    </nav>
+
+    <main>
+        <section id="form">
+            <div class="account_details">
+                <div id="progress">
+                    <p style="color: #2F82CE;">Account</p>
+                    <p class="long-dash"></p>
+                    <img src="./assets/check_circle.svg" alt="">
+                    <p class="long-dash"></p>
+                    <p>Shipping</p>
+                    <img src="./assets/check_circle.svg" alt="">
+                    <p class="long-dash"></p>
+                    <p>Payment</p>
+                </div>
+                <div>
+                    <p style="color: rgb(151, 151, 151);">Email address</p>
+                    <input type="email"  placeholder="Email@myemail.com" id="checked_input"> 
+                    <p style="color: rgb(151, 151, 151);">Password</p>  <input type="password"  placeholder="********" id="checked_input">
+                </div>
+                <div id="account_form">
+                    <button id="secondary_btn">Register for account</button>
+                    <button id="primary_btn">Login</button>
+                </div>
+                <hr>
+                <div id="order_status">
+                    <button id="secondary_btn">Cancel order</button>
+                    <button id="primary_btn">Shipping details</button>
+                </div>
+            </div>
+        </section>
+        <section id="order_summary">
+            <div >
+                <h2>Order Summary</h2>
+                <img src="./assets/sony.jpg" alt="" id="sony">
+                <div id="item">
+                    <div id="item_details">
+                        <h3>Sony wireless headphones</h3>
+                        <p><strong>€320.45</strong></p>
+                    </div>
+                    <div id="counter">
+                        <button id="counter_btn"><img src="./assets/remove.svg" alt=""></button>
+                        <p><strong>1</strong></p>
+                        <button id="counter_btn"><img src="./assets/add.svg" alt=""></button>
+                    </div>
+                </div>
+                <p style="color: rgb(151, 151, 151);">Gift Card / Discount code</p>
+                <div id="discount"> 
+                    <input type="text">
+                    <button id="apply">Apply</button>
+                </div>
+                <div id="tally">
+                    <div>
+                        <p>Sub total</p>
+                        <p>Tax</p>
+                        <p>Shipping</p>
+                        <p><strong>Total</strong></p>
+                    </div>
+                    <div>
+                        <p>€316.55</p>
+                        <p>€3.45</p>
+                        <p style="color:rgb(0, 190, 190);">Free</p>
+                        <p><strong>€230.45</strong></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+    </main>
+
+</body>
+</html>
