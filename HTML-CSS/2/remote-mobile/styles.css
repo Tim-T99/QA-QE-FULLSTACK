@@ -36,6 +36,10 @@ img{
     padding: 5px;
 }
 
+p{
+    padding: 10px;
+}
+
 #clients{
     height: 5%;
     width: 100%;
