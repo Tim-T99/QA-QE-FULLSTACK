@@ -5,19 +5,22 @@ body{
     justify-content: center;
     align-items: center;
     font-family: poppins;
-    background-image: url('./assets/background-01.svg');
+    /* background-image: url('./assets/background-01.svg'); */
     background-size: cover;
+    background-color: rgb(218, 238, 255);
 }
 #card{
     width: 350px;
     height: 500px;
     display: flex;
     flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.596);
+    background-color: rgba(255, 255, 255, 0.425);
     justify-content: center;
     align-items: center;
     text-align: center;
     border-radius: 10px;
+    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3),
+    0px -10px 50px rgba(0, 0, 0, 0.3);
 
 }
 

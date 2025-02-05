@@ -2,10 +2,12 @@ body{
     display: flex;
     flex-direction: column;
     font-family: poppins;
+    font-size: 10px;
+    height: 100%;
 }
 input{
     all: unset;
-    height: 60px;
+    height: 30px;
     width: 70%;
     background-color: #E1E8F0;
     border-radius: 5px;
@@ -25,6 +27,8 @@ nav{
 #nav_links{
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 #account{
@@ -58,8 +62,8 @@ nav{
 }
 
 #potrait{
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
     border-radius: 50%;
     background-size: cover;
     box-shadow: 0 6px 4px rgba(0, 0, 0, 0.2);;
@@ -71,6 +75,9 @@ main{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    height: 90vh;
+    width: 100vw;
+
 }
 
 /* Account div styling */
@@ -99,14 +106,8 @@ main{
     border-radius: 15px;
     padding: 30px;
 }
-
-#order_summary{
-    background-color: #F6FAFD;
-    width: 42%;
-    margin-right: 2%;
-    margin-top: 2%;
-    border-radius: 15px;
-    padding: 30px;
+#account_details{
+    height: 100em;
 }
 
 #order_status{
@@ -115,13 +116,26 @@ main{
     justify-content: end;
 }
 
-/* Order summary styling */
 
+/* Order summary styling */
+#order_summary{
+    display: flex;
+    flex-direction: column;
+    background-color: #F6FAFD;
+    width: 42%;
+    margin-right: 2%;
+    margin-top: 2%;
+    border-radius: 15px;
+    padding: 30px;
+}
+
+#order_info{
+    height: 100%;
+}
 #sony{
-    height: 300px;
+    height: 150px;
     width: 100%;
-    background-size: cover;
-    margin-bottom: 20px;
+    background-size: contain;
 }
 
 #item{
@@ -136,8 +150,6 @@ main{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 20%;
-    height: 30px;
 }
 
 #discount{
@@ -157,7 +169,7 @@ main{
 #account_form{
     display: flex;
     justify-content: end;
-    margin-bottom: 20%;
+    margin-bottom: 5%;
     margin-top: 2%;
 
 }
@@ -178,8 +190,9 @@ br{
 
 
 #account_btn img{
-    height: 20px;
-    width: 20px;
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
 }
 #primary_btn{
     all: unset;
@@ -189,7 +202,8 @@ br{
     background-color: #2F82CE;
     color: white;
     border-radius: 5px;
-    box-shadow: 0 6px 4px rgba(0, 0, 0, 0.2);;
+    box-shadow: 0 6px 4px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
 
 }
 
@@ -198,18 +212,20 @@ br{
     margin: 5px;
     padding: 10px;
     color: #616161;
+    cursor: pointer;
 }
 
 #checked_input{
     all: unset;
-    height: 60px;
+    height: 40px;
     width: 97%;
     background-color: #E1E8F0;
     border-radius: 5px;
     padding-left: 20px;
-    background-image: url('./assets/check_circle.svg'); /* Add the icon */
+    background-image: url('./assets/check_circle.svg'); 
     background-repeat: no-repeat;
     background-position: right 10px center;
+    cursor: pointer;
 }
 
 #apply{
@@ -217,11 +233,13 @@ br{
     display: flex;
     flex-direction: row;
     border: 2px solid #2F82CE;
-    padding: 10px;
+    padding: 6px;
     border-radius: 5px;
     width: 20%;
+    height: 15px;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
 }
 
 #counter_btn{
@@ -233,4 +251,5 @@ br{
     border-radius: 5px;
     margin-right: 20px;
     margin-left: 20px;
+    cursor: pointer;
 }
