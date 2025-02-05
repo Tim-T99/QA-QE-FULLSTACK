@@ -6,8 +6,9 @@ body{
     align-items: center;
     font-family: poppins;
     /* background-image: url('./assets/background-01.svg'); */
+    background: radial-gradient( 200px circle at 850px 90px, #afcfe9 20%, #cfe3ee 40%, #e2ecf6 80%);
     background-size: cover;
-    background-color: rgb(218, 238, 255);
+    background-attachment: fixed;
 }
 #card{
     width: 350px;
@@ -19,8 +20,6 @@ body{
     align-items: center;
     text-align: center;
     border-radius: 10px;
-    box-shadow: 0px 10px 50px rgba(0, 0, 0, 0.3),
-    0px -10px 50px rgba(0, 0, 0, 0.3);
 
 }
 
