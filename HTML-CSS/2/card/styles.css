@@ -5,7 +5,6 @@ body{
     justify-content: center;
     align-items: center;
     font-family: poppins;
-    /* background-image: url('./assets/background-01.svg'); */
     background: radial-gradient( 200px circle at 850px 90px, #afcfe9 20%, #cfe3ee 40%, #e2ecf6 80%);
     background-size: cover;
     background-attachment: fixed;
