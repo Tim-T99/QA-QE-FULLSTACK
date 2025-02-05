@@ -1,2 +1,1 @@
-
-![google card](https://github.com/user-attachments/assets/edd8cb9a-bede-41d1-9501-b4b37fb0bec6)
+![google card](https://github.com/user-attachments/assets/022808b2-81a5-4d3d-9657-89b39316fd8d)
