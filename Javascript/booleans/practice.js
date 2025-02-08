@@ -103,7 +103,7 @@ function processWithdrawal(user, inputPassword, inputMfaCode, balance, withdrawa
 // ○ What purpose does the daily transaction limit serve? How does it help in
 // preventing fraudulent or excessive withdrawals?
 
-// Daily transaction limits are a security measure which help prevent theft for instance in the case of identity thefts.
+// Daily transaction limits are a security measure which help prevent theft for instance in the case of identity theft.
 
 // 5. Improvement:
 // ○ If you were to add extra features, such as fraud detection (e.g., detecting
