@@ -5,7 +5,9 @@ function isPalindrome(str){
     let clean = str.toLowerCase().replace(/[^a-z0-9]/g, '')
     return clean === clean.split('').reverse().join('')
 }
-console.log(isPalindrome('a man, a plan, a canal, panama'))
+console.log(isPalindrome('a man, a plan, a canal, panama'));
+console.log(isPalindrome('Was it a car or a cat I saw?'));
+console.log(isPalindrome('Hello, World!'));
 
 // 2. Reverse a String
 // Write a function to reverse a given string.
@@ -13,7 +15,7 @@ console.log(isPalindrome('a man, a plan, a canal, panama'))
 function reversed(str){
     return str.split('').reverse().join('')
 }
-console.log(reversed('a man, a plan, a canal, panama'))
+console.log(reversed('a man, a plan, a canal, panama'));
 
 // 3. Find the Longest Palindromic Substring
 // Write a function to find the longest palindromic substring in a given string.
@@ -38,7 +40,8 @@ function longestPalindromicSubstring(str) {
     return longest;
 }
 
-console.log(longestPalindromicSubstring('babad')); 
+console.log(longestPalindromicSubstring('babad'));
+console.log(longestPalindromicSubstring('cbbd'));
 
 
 
@@ -56,7 +59,8 @@ function areAnagrams(str1, str2){
     return clean1 === clean2
 }
 
-console.log(areAnagrams('Hello', 'World'))
+console.log(areAnagrams('Listen', 'Silent'));
+console.log(areAnagrams('Hello', 'World'));
 
 // 5. Remove Duplicates from a String
 // Write a function to remove duplicate characters from a string while preserving the order of the first appearance of each character.
@@ -74,7 +78,11 @@ function removeDuplicates(str){
     }
     return result;
 }
-console.log(removeDuplicates('programming'))
+console.log(removeDuplicates('programming'));
+console.log(removeDuplicates('hello world'));
+console.log(removeDuplicates('aaaaa'));
+console.log(removeDuplicates('abcd'));
+console.log(removeDuplicates('aabbcc'));
 
 // 6. Count Palindromes in a String
 // Write a function to count how many distinct palindromes are in a given string. A palindrome is considered distinct based on its start and end position in the string.
@@ -96,7 +104,12 @@ function countPalindromes(str){
     }
      return count;
 }
-console.log(countPalindromes('racecar'))
+
+console.log(countPalindromes('ababa'));
+console.log(countPalindromes('racecar'));
+console.log(countPalindromes('aabb'));
+console.log(countPalindromes('a'));
+console.log(countPalindromes('abc'));
 
 // 7. Longest Common Prefix
 // Write a function to find the longest common prefix string amongst an array of strings. If there is no common prefix, return an empty string.
@@ -118,6 +131,10 @@ function longestCommonPrefix(arr){
 }
 
 console.log(longestCommonPrefix(['flower', 'flow', 'flight']) );
+console.log(longestCommonPrefix(['dog', 'racecar', 'car']));
+console.log(longestCommonPrefix(['interspecies', 'interstellar', 'interstate']));
+console.log(longestCommonPrefix(['prefix', 'prefixes', 'preform']));
+console.log(longestCommonPrefix(['apple', 'banana', 'cherry']));
 
 // 8. Case Insensitive Palindrome
 // Modify the palindrome function to be case insensitive, meaning it should ignore upper and lower case differences when checking for a palindrome.
@@ -126,4 +143,8 @@ function isCaseSensitivePalindrome(str){
     let clean = str.toLowerCase().replace(/[^a-z0-9]/g, '')
     return clean === clean.split('').reverse().join('')
 }
-console.log(isCaseSensitivePalindrome('Hello'))
+console.log(isCaseSensitivePalindrome('Aba'));
+console.log(isCaseSensitivePalindrome('Racecar'));
+console.log(isCaseSensitivePalindrome('Palindrome'));
+console.log(isCaseSensitivePalindrome('Madam'));
+console.log(isCaseSensitivePalindrome('Hello'));
