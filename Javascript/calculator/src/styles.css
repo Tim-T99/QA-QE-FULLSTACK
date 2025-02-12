@@ -30,7 +30,10 @@
   .previous-operand {
     color: #666;
     font-size: 20px;
-    min-height: 24px;
+    height: 30px;
+    border: none;
+    background-color: #66666600;
+    text-align: end;
   }
 
   .current-operand {
@@ -42,6 +45,7 @@
     font-weight: 300;
     margin-top: 8px;
     overflow: hidden;
+    text-align: end;
     text-overflow: ellipsis;
   }
 

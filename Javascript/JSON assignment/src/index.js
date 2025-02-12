@@ -20,8 +20,8 @@ async function fetchProducts() {
             productList.appendChild(productDiv)
             
         });
-    } catch (error) {
-        
+    } catch {
+        alert("Cannot fetch data")
     }
 }
 document.addEventListener('DOMContentLoaded', fetchProducts)

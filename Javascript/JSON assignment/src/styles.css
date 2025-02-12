@@ -43,6 +43,11 @@ h1{
     background-color: rgba(193, 243, 243, 0.37);
 }
 
+alertBox.style.display{
+    background-color: aquamarine;
+    color: red;
+}
+
 @media only screen and (max-width: 600px){
     #productList{
         display: flex;
