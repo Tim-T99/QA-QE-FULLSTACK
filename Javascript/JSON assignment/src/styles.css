@@ -12,7 +12,6 @@ p{
 #productList {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    flex-wrap: wrap;
     width: 100%;
     min-width: 20%;
     margin: 20px;
@@ -38,4 +37,11 @@ p{
 
 .product:hover{
     background-color: rgba(193, 243, 243, 0.37);
+}
+
+@media only screen and (max-width: 600px){
+    #productList{
+        display: flex;
+        flex-direction: column;
+    }
 }
