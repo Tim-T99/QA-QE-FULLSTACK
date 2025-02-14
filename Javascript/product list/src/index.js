@@ -15,7 +15,7 @@ async function fetchProducts() {
             <p>${product.description}</p>
             <p>${product.price}</P>
             <p>${product.category}</p>
-            <p>${product.stock}</p>`
+            <p>Stock: ${product.stock}</p>`
 
             productList.appendChild(productDiv)
             
