@@ -1,0 +1,124 @@
+/* Modern container styling */
+:root {
+    --card-bg: #f8f9fa;
+    --card-radius: 8px;
+    --card-padding: 1.5rem;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body {
+    margin: 0;
+    padding: 20px;
+    background: #f0f2f5;
+}
+
+/* Main container */
+#personal-info,
+#shipping-address,
+#billing-address,
+#transactions {
+    background: var(--card-bg);
+    border-radius: var(--card-radius);
+    padding: var(--card-padding);
+    box-shadow: var(--shadow);
+    box-sizing: border-box;
+}
+
+/* Personal info styling */
+#personal-info {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+#personal-info h2 {
+    margin: 0 0 10px 0;
+    color: #2d3748;
+    font-size: 1.8rem;
+    font-weight: 600;
+}
+
+/* Address sections */
+#shipping-address,
+#billing-address {
+    float: left;
+    width: 48%;
+    margin-bottom: 20px;
+}
+
+#shipping-address {
+    margin-right: 2%;
+}
+
+#billing-address {
+    margin-left: 2%;
+}
+
+/* Address headings */
+#shipping-address h3,
+#billing-address h3,
+#transactions h3 {
+    margin: 0 0 15px 0;
+    color: #2d3748;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+/* Address content */
+#shipping-address p,
+#billing-address p {
+    margin: 8px 0;
+    line-height: 1.6;
+}
+
+/* Transactions section */
+#transactions {
+    clear: both;
+    width: 100%;
+}
+
+#transactions ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#transactions li {
+    padding: 12px 15px;
+    margin: 8px 0;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Strong tags */
+strong {
+    color: #4a5568;
+    font-weight: 600;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    #shipping-address,
+    #billing-address {
+        float: none;
+        width: 100%;
+        margin: 0 0 20px 0;
+    }
+
+    #personal-info h2 {
+        font-size: 1.5rem;
+    }
+
+    #shipping-address h3,
+    #billing-address h3,
+    #transactions h3 {
+        font-size: 1.3rem;
+    }
+}
