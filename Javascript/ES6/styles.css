@@ -80,17 +80,20 @@ body {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
 }
 
 #transactions li {
     padding: 12px 15px;
-    margin: 8px 0;
     background: white;
     border-radius: 6px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin: 0;
 }
 
 /* Strong tags */
@@ -110,6 +113,10 @@ strong {
         float: none;
         width: 100%;
         margin: 0 0 20px 0;
+    }
+
+    #transactions ul {
+        grid-template-columns: 1fr;
     }
 
     #personal-info h2 {
