@@ -71,29 +71,36 @@ body {
 }
 
 /* Transactions section */
+/* ... (keep all previous CSS the same until transactions section) ... */
+
+/* Transactions section */
 #transactions {
     clear: both;
     width: 100%;
 }
 
-#transactions ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+#transactions h3 {
+    margin: 0 0 15px 0;
+    color: #2d3748;
+    font-size: 1.4rem;
+    font-weight: 600;
 }
 
 #transactions li {
+    display: inline-block;
+    width: 48%;
+    margin: 1%;
     padding: 12px 15px;
     background: white;
     border-radius: 6px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    
 }
 
 /* Strong tags */
@@ -115,10 +122,12 @@ strong {
         margin: 0 0 20px 0;
     }
 
-    #transactions ul {
-        grid-template-columns: 1fr;
+    #transactions li {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
     }
-
+    
     #personal-info h2 {
         font-size: 1.5rem;
     }

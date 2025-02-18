@@ -55,7 +55,6 @@ const {
 const { transactions } = user.payment;
 
 const personal = document.getElementById("personal-info");
-const allTransactions = document.getElementById("transactions");
 
 personal.innerHTML = `<h2>${first} ${last}</h2>
                         ${email}`;
@@ -78,15 +77,13 @@ billinginfo.innerHTML = `<h3>Billing address</h3>
 <p><strong>Postal Code:</strong> ${postalCode1}</p>
 <p><strong>Country:</strong> ${country1}</p>`;
 
-const usertransactions = transactions.map((transaction) => [
-  transaction.amount,
-  transaction.description,
-]);
-
-allTransactions.innerHTML = `<h3>Transactions</h3>
-<ul>${usertransactions
+const allTransactions = document.getElementById("transactions");
+const usertransactions = transactions
   .map(
     (transaction) =>
-      `<li>Amount: ${transaction[0]} Item: ${transaction[1]}</li>`
+      `<li>Amount: ${transaction.amount} Item: ${transaction.description}</li>`
   )
-  .join("")}</ul>`;
+  .join("");
+
+allTransactions.innerHTML = `<h3>Transactions</h3>
+${usertransactions}`;
