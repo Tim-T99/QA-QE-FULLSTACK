@@ -1,43 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Library</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Library</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="filters"> 
-        <input type= "text" placeholder="Enter a year" id="year">
-        <button onclick="filtered()">Filter</button>
-    </div>
-    <div id="filters"> 
-        <label for="genres">Choose a genre:</label>
+  <!-- Row 1: Header -->
+  <header>
+    <h1>Book Library</h1>
+    <p>Browse our collection of books</p>
+  </header>
 
-        <select name="genres" id="genre">
-          <option value="Fiction">Fiction</option>
-          <option value="Dystopian">Dystopian</option>
-          <option value="Romance">Romance</option>
-          <option value="Fantasy">Fantasy</option>
-          <option value="Adventure">Adventure</option>
-          <option value="Historical Fiction">Historical Fiction</option>
-          <option value="Epic Poetry">Epic Poetry</option>
-        </select> 
-        <button onclick="filteredGenre()">Filter</button>
-        <div class="sort-controls">
-            <label for="sortOption">Sort by: </label>
-            <select id="sortOption" onchange="sortBooks()">
-              <option value="" disabled selected>Select sort criteria</option>
-              <option value="year">Year</option>
-              <option value="genre">Genre</option>
-              <option value="pages">Pages</option>
-            </select>
-          </div>
+  <!-- Row 2: Controls -->
+  <div class="controls">
+    <div class="filter-section">
+      <h3>Filter Books</h3>
+      <div>
+        <input type="number" id="year" placeholder="Enter year...">
+        <button onclick="filtered()">Filter by Year</button>
+      </div>
+      <div>
+        <input type="text" id="genre" placeholder="Enter genre...">
+        <button onclick="filteredGenre()">Filter by Genre</button>
+      </div>
     </div>
-    <div id="main">
-        
+    
+    <div class="sort-section">
+      <h3>Sort Books</h3>
+      <div>
+        <select id="sortOption">
+          <option value="title">Title</option>
+          <option value="year">Year</option>
+          <option value="genre">Genre</option>
+          <option value="pages">Pages</option>
+        </select>
+        <select id="sortDirection">
+          <option value="asc">Ascending</option>
+          <option value="desc">Descending</option>
+        </select>
+        <button onclick="sortBooks()">Sort</button>
+      </div>
+      <button onclick="displayBooks(globalBooks)">Show All Books</button>
     </div>
+  </div>
 
-    <script src="script.js"></script>
+  <!-- Row 3: Book Display -->
+  <div id="main"></div>
+  
+  <script src="script.js"></script>
 </body>
 </html>

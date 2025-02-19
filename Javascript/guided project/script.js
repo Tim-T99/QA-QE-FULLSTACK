@@ -1,11 +1,9 @@
 let globalBooks = [];
-globalBooks.sort();
 
 async function fetchBooks() {
   try {
     const response = await fetch("http://localhost:3000/books");
     globalBooks = await response.json();
-    
     displayBooks(globalBooks);
   } catch {
     alert("Cannot fetch data");
@@ -16,7 +14,7 @@ async function fetchBooks() {
 function displayBooks(booksToDisplay) {
   const booksList = document.getElementById("main");
   booksList.innerHTML = "";
-  
+ 
   booksToDisplay.forEach((book) => {
     const bookDiv = document.createElement("div");
     bookDiv.classList.add("book");
@@ -41,7 +39,7 @@ function filtered() {
   try {
     const inputYear = parseInt(document.getElementById("year").value);
     const filteredBooks = globalBooks.filter((book) => book.year < inputYear);
-    
+   
     displayBooks(filteredBooks);
     console.log(`Found ${filteredBooks.length} books before ${inputYear}`);
   } catch {
@@ -50,46 +48,64 @@ function filtered() {
 }
 
 function filteredGenre() {
-    try {
-      const inputgenre = (document.getElementById("genre").value);
-      const filteredBooks = globalBooks.filter((book) => book.genre === inputgenre);
-      
-      displayBooks(filteredBooks);
-      console.log(`Found ${filteredBooks.length} books matching ${inputgenre}`);
-    } catch {
-      console.log("Could not filter");
-    }
+  try {
+    const inputgenre = (document.getElementById("genre").value);
+    const filteredBooks = globalBooks.filter((book) => book.genre === inputgenre);
+   
+    displayBooks(filteredBooks);
+    console.log(`Found ${filteredBooks.length} books matching ${inputgenre}`);
+  } catch {
+    console.log("Could not filter");
   }
+}
 
-  // Sort function that can sort by year, genre, or pages
-// Sort function that works with a dropdown
+// New improved sort function with ascending/descending options
 function sortBooks() {
-    try {
-      const sortBy = document.getElementById("sortOption").value;
-      let sortedBooks = [...globalBooks]; // Create a copy to avoid modifying original data
-      
-      switch(sortBy) {
-        case 'year':
-          sortedBooks.sort((a, b) => a.year - b.year);
-          break;
-        case 'genre':
-          sortedBooks.sort((a, b) => a.genre.localeCompare(b.genre));
-          break;
-        case 'pages':
-          sortedBooks.sort((a, b) => a.pages - b.pages);
-          break;
-        default:
-          console.log("Invalid sort criteria");
-          return;
-      }
-      
-      displayBooks(sortedBooks);
-      console.log(`Books sorted by ${sortBy} in ascending order`);
-    } catch {
-      console.log("Could not sort books");
+  try {
+    const sortBy = document.getElementById("sortOption").value;
+    const sortDirection = document.getElementById("sortDirection").value;
+    let sortedBooks = [...globalBooks]; // Create a copy to avoid modifying original data
+    
+    switch(sortBy) {
+      case 'year':
+        sortedBooks.sort((a, b) => sortDirection === 'asc' ? a.year - b.year : b.year - a.year);
+        break;
+      case 'genre':
+        sortedBooks.sort((a, b) => {
+          return sortDirection === 'asc' 
+            ? a.genre.localeCompare(b.genre)
+            : b.genre.localeCompare(a.genre);
+        });
+        break;
+      case 'pages':
+        sortedBooks.sort((a, b) => sortDirection === 'asc' ? a.pages - b.pages : b.pages - a.pages);
+        break;
+      case 'title':
+        sortedBooks.sort((a, b) => {
+          return sortDirection === 'asc'
+            ? a.title.localeCompare(b.title)
+            : b.title.localeCompare(a.title);
+        });
+        break;
+      default:
+        console.log("Invalid sort criteria");
+        return;
     }
+    
+    displayBooks(sortedBooks);
+    console.log(`Books sorted by ${sortBy} in ${sortDirection === 'asc' ? 'ascending' : 'descending'} order`);
+  } catch {
+    console.log("Could not sort books");
   }
+}
 
+// Helper function to create book summary
+function createBookSummary() {
+  const summary = globalBooks.map((book) => 
+    `${book.title} by ${book.author} - ${book.genre} (${book.pages} pages)`
+  );
+  console.log(summary);
+}
 
 // Initialize on page load
 document.addEventListener("DOMContentLoaded", fetchBooks);
