@@ -14,14 +14,25 @@
     <div id="filters"> 
         <label for="genres">Choose a genre:</label>
 
-        <select name="genre" id="genre">
+        <select name="genres" id="genre">
           <option value="Fiction">Fiction</option>
           <option value="Dystopian">Dystopian</option>
           <option value="Romance">Romance</option>
           <option value="Fantasy">Fantasy</option>
           <option value="Adventure">Adventure</option>
           <option value="Historical Fiction">Historical Fiction</option>
+          <option value="Epic Poetry">Epic Poetry</option>
         </select> 
+        <button onclick="filteredGenre()">Filter</button>
+        <div class="sort-controls">
+            <label for="sortOption">Sort by: </label>
+            <select id="sortOption" onchange="sortBooks()">
+              <option value="" disabled selected>Select sort criteria</option>
+              <option value="year">Year</option>
+              <option value="genre">Genre</option>
+              <option value="pages">Pages</option>
+            </select>
+          </div>
     </div>
     <div id="main">
         

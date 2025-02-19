@@ -1,4 +1,5 @@
 let globalBooks = [];
+globalBooks.sort();
 
 async function fetchBooks() {
   try {
@@ -59,5 +60,36 @@ function filteredGenre() {
       console.log("Could not filter");
     }
   }
+
+  // Sort function that can sort by year, genre, or pages
+// Sort function that works with a dropdown
+function sortBooks() {
+    try {
+      const sortBy = document.getElementById("sortOption").value;
+      let sortedBooks = [...globalBooks]; // Create a copy to avoid modifying original data
+      
+      switch(sortBy) {
+        case 'year':
+          sortedBooks.sort((a, b) => a.year - b.year);
+          break;
+        case 'genre':
+          sortedBooks.sort((a, b) => a.genre.localeCompare(b.genre));
+          break;
+        case 'pages':
+          sortedBooks.sort((a, b) => a.pages - b.pages);
+          break;
+        default:
+          console.log("Invalid sort criteria");
+          return;
+      }
+      
+      displayBooks(sortedBooks);
+      console.log(`Books sorted by ${sortBy} in ascending order`);
+    } catch {
+      console.log("Could not sort books");
+    }
+  }
+
+
 // Initialize on page load
 document.addEventListener("DOMContentLoaded", fetchBooks);
