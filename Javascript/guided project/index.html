@@ -7,7 +7,25 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="main"></div>
+    <div id="filters"> 
+        <input type= "text" placeholder="Enter a year" id="year">
+        <button onclick="filtered()">Filter</button>
+    </div>
+    <div id="filters"> 
+        <label for="genres">Choose a genre:</label>
+
+        <select name="genre" id="genre">
+          <option value="Fiction">Fiction</option>
+          <option value="Dystopian">Dystopian</option>
+          <option value="Romance">Romance</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Historical Fiction">Historical Fiction</option>
+        </select> 
+    </div>
+    <div id="main">
+        
+    </div>
 
     <script src="script.js"></script>
 </body>
