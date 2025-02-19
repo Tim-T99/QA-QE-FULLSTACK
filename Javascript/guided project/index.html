@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Book Library</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
 </head>
 <body>
   <!-- Row 1: Header -->
@@ -22,7 +25,16 @@
         <button onclick="filtered()">Filter by Year</button>
       </div>
       <div>
-        <input type="text" id="genre" placeholder="Enter genre...">
+        <select id="genre">
+          <option selected="All">All</option>
+          <option value="Fiction">Fiction</option>
+          <option value="Dystopian">Dystopian</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Romance">Romance</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Historical Fiction">Historical Fiction</option>
+          <option value="Epic Poetry">Epic Poetry</option>
+        </select>
         <button onclick="filteredGenre()">Filter by Genre</button>
       </div>
     </div>
