@@ -1,0 +1,33 @@
+#booksList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 100%;
+    min-width: 20%;
+    margin: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.book{
+    width: 90%;
+    height: 100rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: 5%;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);    
+}
+
+.product:hover{
+    background-color: rgba(193, 243, 243, 0.37);
+}
+
+img{
+    width: 35rem;
+    height: 50rem;
+}
