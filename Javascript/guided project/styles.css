@@ -44,10 +44,10 @@ h1 {
   background-color: #cfcfcf;
   min-height: 400px;
   min-width: 500px;
-  max-width: screen;
   border-radius: 10px;
   visibility: hidden;
 }
+
 /* Controls section - 2nd row */
 .controls {
   display: flex;

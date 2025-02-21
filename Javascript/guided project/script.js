@@ -11,7 +11,6 @@ async function fetchBooks() {
   }
 }
 
-//Reusable function to  display books  for filtering
 function displayBooks(booksToDisplay) {
   const booksList = document.getElementById("main");
   booksList.innerHTML = "";
@@ -116,49 +115,48 @@ function sortBooks() {
   }
 }
 
-// const buyButton = document.getElementById("buy");
-// buyButton.addEventListener("click", addToCart);
-
 function addToCart(id) {
-  if(globalBooks.some((item) => item.id === id)) {
+  const item = globalBooks
+  const book = globalBooks.at(id-1)
+  console.log(book)
+  console.log(item)
+  if(globalBooks.find((item) => item.id === id)) {
     // This item is already in the cart
-    const existingItem = globalBooks.some((item) => item.id === id);
+    const existingItem = globalBooks.find((item) => item.id === id);
     existingItem.numberOfUnits += 1;
-    renderCartItems(); // Remove the parameter
+    renderCartItems(); 
   } else {
     // Item not in cart yet, add it
     const item = globalBooks.find((selectedBook) => selectedBook.id === id);
     cartBooks.push({
-      item,
+      ...item,
       numberOfUnits: 1
     });
-    renderCartItems(); // Remove the parameter
+    renderCartItems(); 
   }
 }
 
-function renderCartItems() {
+function renderCartItems(globalBooks) {
   const cartDiv = document.getElementById("cartDiv");
   cartDiv.innerHTML = "";
-  console.log(cartBooks);
   
-  cartBooks.forEach((book) => {
+  cartBooks.forEach((item) => {
     const cartBookDiv = document.createElement("div");
     cartBookDiv.classList.add("book");
     cartBookDiv.innerHTML = `
-          <img src="${book.image}">
+          <img src="${item.image}">
           <p id="warning">${
-            book.pages > 500 ? "Warning: Book has over 500 pages" : ""
+            item.pages > 500 ? "Warning: Book has over 500 pages" : ""
           }</p>
-          <h2>${book.title}</h2>
-          <p>${book.author}</p>
-          <p><strong>Genre:</strong> ${book.genre}</p>
-          <p><strong>Year:</strong> ${book.year}</p>
-          <p><strong>Pages:</strong> ${book.pages}</p>
-          <p><strong>Publisher:</strong> ${book.publisher}</p>
-          <p><strong>Description:</strong> ${book.description}</p>
-          <p><strong>Price:</strong> $${book.price}</p>
-          <p><strong>Quantity:</strong> ${book.numberOfUnits}</p>`;
-          console.log(globalBooks)
+          <h2>${item.title}</h2>
+          <p>${item.author}</p>
+          <p><strong>Genre:</strong> ${item.genre}</p>
+          <p><strong>Year:</strong> ${item.year}</p>
+          <p><strong>Pages:</strong> ${item.pages}</p>
+          <p><strong>Publisher:</strong> ${item.publisher}</p>
+          <p><strong>Description:</strong> ${item.description}</p>
+          <p><strong>Price:</strong> $${item.price}</p>
+          <p><strong>Quantity:</strong> ${item.numberOfUnits}</p>`;
     cartDiv.appendChild(cartBookDiv);
   });
 }
