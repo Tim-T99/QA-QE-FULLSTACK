@@ -116,17 +116,24 @@ function sortBooks() {
 }
 
 function addToCart(id) {
-  const book = globalBooks.at(id-1)
-  console.log(book)
-  let found = new Set();
-        
-  if(!found.has(book)){
-    cartBooks.push(book)
-    found.add(book)
+  const book = globalBooks.at(id - 1);
+  console.log(book);
+
+  // Find if the book is already in cartBooks
+  const existingBook = cartBooks.find(item => item.id === book.id);
+
+  if (existingBook) {
+    // If book exists, increase quantity
+    existingBook.quantity += 1;
+  } else {
+    // If book does not exist, add it with quantity 1
+    cartBooks.push({ ...book, quantity: 1 });
   }
-  console.log(cartBooks)
-  renderCartItems(cartBooks)
+
+  console.log(cartBooks);
+  renderCartItems(cartBooks);
 }
+
 
 function renderCartItems(cartBooks) {
   const cartDiv = document.getElementById("cartDiv");
@@ -148,7 +155,7 @@ function renderCartItems(cartBooks) {
           <p><strong>Publisher:</strong> ${item.publisher}</p>
           <p><strong>Description:</strong> ${item.description}</p>
           <p><strong>Price:</strong> $${item.price}</p>
-          <p><strong>Quantity:</strong> ${item.numberOfUnits}</p>`;
+          <p><strong>Quantity:</strong> ${item.quantity}</p>`;
     cartDiv.appendChild(cartBookDiv);
   });
 }
@@ -165,3 +172,22 @@ function displayCart(){
     cartDiv.style.visibility= "hidden";
   }
 }
+
+const clearBtn = document.createElement("button");
+  clearBtn.textContent = "Clear All";
+  clearBtn.onclick = () => {
+    // Clear the cartBooks array and re-render the cart
+    cartBooks.length = 0;
+    renderCartItems(cartBooks);
+  };
+  cartDiv.appendChild(clearBtn);
+
+  // Create and append the "Close" button
+  const closeBtn = document.createElement("button");
+  closeBtn.textContent = "Close";
+  closeBtn.onclick = () => {
+    // Hide the cartDiv
+    cartDiv.style.zIndex = -1;
+    cartDiv.style.visibility = "hidden";
+  };
+  cartDiv.appendChild(closeBtn);
