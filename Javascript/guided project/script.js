@@ -116,27 +116,19 @@ function sortBooks() {
 }
 
 function addToCart(id) {
-  const item = globalBooks
   const book = globalBooks.at(id-1)
   console.log(book)
-  console.log(item)
-  if(globalBooks.find((item) => item.id === id)) {
-    // This item is already in the cart
-    const existingItem = globalBooks.find((item) => item.id === id);
-    existingItem.numberOfUnits += 1;
-    renderCartItems(); 
-  } else {
-    // Item not in cart yet, add it
-    const item = globalBooks.find((selectedBook) => selectedBook.id === id);
-    cartBooks.push({
-      ...item,
-      numberOfUnits: 1
-    });
-    renderCartItems(); 
+  let found = new Set();
+        
+  if(!found.has(book)){
+    cartBooks.push(book)
+    found.add(book)
   }
+  console.log(cartBooks)
+  renderCartItems(cartBooks)
 }
 
-function renderCartItems(globalBooks) {
+function renderCartItems(cartBooks) {
   const cartDiv = document.getElementById("cartDiv");
   cartDiv.innerHTML = "";
   
