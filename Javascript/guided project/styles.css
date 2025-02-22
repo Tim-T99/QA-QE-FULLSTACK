@@ -29,23 +29,74 @@ h1 {
   font-weight: bolder;
 }
 
-#cart{
+#cart {
   border-radius: 50%;
   margin-right: 20px;
+  cursor: pointer;
 }
 
-#cartDiv{
-  position: absolute;
-  z-index: 1;
-  height: fit-content;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  background-color: #cfcfcf;
-  min-height: 400px;
-  min-width: 500px;
+#mainCartDiv {
+  position: fixed;
+  top: 50px;
+  right: 50px;
+  z-index: 10;
+  background-color: #fff;
   border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
   visibility: hidden;
+  transition: visibility 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  opacity: 0;
+}
+
+#cartDiv {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px;
+}
+
+.book {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background: #f8f8f8;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.book img {
+  max-width: 300px;
+  border-radius: 5px;
+}
+
+#closeBtn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+#close, #clear {
+  border: none;
+  cursor: pointer;
+  padding: 8px 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: #ff4d4d;
+  color: white;
+}
+
+#clear {
+  background-color: #555;
+}
+
+#close:hover, #clear:hover {
+  opacity: 0.8;
 }
 
 /* Controls section - 2nd row */

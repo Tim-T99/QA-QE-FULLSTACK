@@ -9,7 +9,7 @@
     "publisher": "J.B. Lippincott & Co.",
     "description": "A novel about the serious issues of rape and racial inequality, told through the eyes of a young girl in the Deep South.",
     "image": "https://m.media-amazon.com/images/I/81gepf1eMqL.jpg",
-    "price": 12.99
+    "price": 1299
   },
   {
     "id": 2,
@@ -21,7 +21,7 @@
     "publisher": "Secker & Warburg",
     "description": "A dystopian novel set in a totalitarian society ruled by the Party, which has total control over every aspect of people's lives.",
     "image": "https://cdnattic.atticbooks.co.ke/img/F763507.jpg",
-    "price": 10.95
+    "price": 1095
   },
   {
     "id": 3,
@@ -33,7 +33,7 @@
     "publisher": "Charles Scribner's Sons",
     "description": "A story of the fabulously wealthy Jay Gatsby and his love for the beautiful Daisy Buchanan.",
     "image": "https://m.media-amazon.com/images/I/81af+MCATTL.jpg",
-    "price": 9.50
+    "price": 950
   },
   {
     "id": 4,
@@ -45,7 +45,7 @@
     "publisher": "T. Egerton, Whitehall",
     "description": "A romantic novel of manners that follows the character development of Elizabeth Bennet, the protagonist.",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4lmgfjRuedwlUe5x32skQqpkZmLt7BIbSfw&s",
-    "price": 8.75
+    "price": 875
   },
   {
     "id": 5,
@@ -57,7 +57,7 @@
     "publisher": "Little, Brown and Company",
     "description": "A story about Holden Caulfield's experiences in New York City after being expelled from prep school.",
     "image": "https://m.media-amazon.com/images/I/81OthjkJBuL.jpg",
-    "price": 11.25
+    "price": 1125
   },
   {
     "id": 6,
@@ -69,7 +69,7 @@
     "publisher": "George Allen & Unwin",
     "description": "A fantasy novel about the adventures of Bilbo Baggins, a hobbit, who sets out on a quest to win a share of a dragon's treasure.",
     "image": "https://m.media-amazon.com/images/I/91b0C2YNSrL.jpg",
-    "price": 14.50
+    "price": 1450
   },
   {
     "id": 7,
@@ -81,7 +81,7 @@
     "publisher": "Ballantine Books",
     "description": "A dystopian novel about a future society where books are banned, and 'firemen' burn any that are found.",
     "image": "https://embed.cdn.pais.scholastic.com/v1/channels/tso/products/identifiers/isbn/9781451673319/primary/renditions/700",
-    "price": 10.25
+    "price": 1025
   },
   {
     "id": 8,
@@ -93,7 +93,7 @@
     "publisher": "Harper & Brothers",
     "description": "The story of Captain Ahab's obsessive quest to kill the white whale, Moby-Dick.",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShbPVb5AOXrnAHby-vC2QyP5eIwolglJojXA&s",
-    "price": 13.75
+    "price": 1375
   },
   {
     "id": 9,
@@ -105,7 +105,7 @@
     "publisher": "The Russian Messenger",
     "description": "A novel that chronicles the French invasion of Russia and the impact of the Napoleonic era on Tsarist society.",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRf9T6MHfKNMYUISZOJuPpYabaQ4i6RX7HWJQ&s",
-    "price": 18.99
+    "price": 1899
   },
   {
     "id": 10,
@@ -117,6 +117,6 @@
     "publisher": "Unknown",
     "description": "An epic poem that follows the Greek hero Odysseus on his journey home after the fall of Troy.",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTuhnwzt430A1Ot4gCaPesUIiZ8E42kZZAKpA&s",
-    "price": 9.99
+    "price": 999
   }
 ]}

@@ -153,9 +153,9 @@ function renderCartItems(cartBooks) {
           <p><strong>Year:</strong> ${item.year}</p>
           <p><strong>Pages:</strong> ${item.pages}</p>
           <p><strong>Publisher:</strong> ${item.publisher}</p>
-          <p><strong>Description:</strong> ${item.description}</p>
           <p><strong>Price:</strong> $${item.price}</p>
-          <p><strong>Quantity:</strong> ${item.quantity}</p>`;
+          <p><strong>Quantity:</strong> ${item.quantity}</p>
+          <p><strong>Subtotal:</strong>${item.quantity * item.price}</p>`;
     cartDiv.appendChild(cartBookDiv);
   });
 }
@@ -163,31 +163,30 @@ function renderCartItems(cartBooks) {
 // Initialize on page load
 document.addEventListener("DOMContentLoaded", fetchBooks);
 
-function displayCart(){
-  if(cartDiv.style.zIndex <= 0){
-    cartDiv.style.zIndex = 1
-    cartDiv.style.visibility= "visible";
-  }else{
-    cartDiv.style.zIndex = -1
-    cartDiv.style.visibility= "hidden";
+function displayCart() {
+  const mainCartDiv = document.getElementById("mainCartDiv");
+
+  if (mainCartDiv.style.visibility === "hidden" || mainCartDiv.style.opacity === "0") {
+    mainCartDiv.style.visibility = "visible";
+    mainCartDiv.style.opacity = "1";
+  } else {
+    mainCartDiv.style.visibility = "hidden";
+    mainCartDiv.style.opacity = "0";
   }
 }
 
-const clearBtn = document.createElement("button");
-  clearBtn.textContent = "Clear All";
+
+const clearBtn = document.getElementById("clear");
   clearBtn.onclick = () => {
     // Clear the cartBooks array and re-render the cart
     cartBooks.length = 0;
     renderCartItems(cartBooks);
   };
-  cartDiv.appendChild(clearBtn);
+  mainCartDiv.appendChild(clearBtn);
 
   // Create and append the "Close" button
-  const closeBtn = document.createElement("button");
-  closeBtn.textContent = "Close";
-  closeBtn.onclick = () => {
-    // Hide the cartDiv
-    cartDiv.style.zIndex = -1;
-    cartDiv.style.visibility = "hidden";
-  };
-  cartDiv.appendChild(closeBtn);
+ document.getElementById("close").onclick = function () {
+  document.getElementById("mainCartDiv").style.visibility = "hidden";
+  document.getElementById("mainCartDiv").style.opacity = "0";
+};
+
