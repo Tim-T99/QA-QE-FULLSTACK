@@ -2,7 +2,6 @@ let globalBooks = [];
 let cartBooks = [];
 const totalDiv = document.getElementById("total");
 
-
 async function fetchBooks() {
   try {
     const response = await fetch("http://localhost:3000/books");
