@@ -38,8 +38,13 @@ function displayBooks(booksToDisplay:BooksArray):void {
           <p><strong>Publisher:</strong> ${book.publisher}</p>
           <p><strong>Description:</strong> ${book.description}</p>
           <p><strong>Price:</strong> ${book.price}</p>
-          <button id="buy" onclick="addToCart(${book.id})">Buy Now</button>`;
+          <button id="buy" class="buy-button"">Buy Now</button>`;
     booksList.appendChild(bookDiv);
+
+    const buyButton = bookDiv.querySelector(`.buy-button`);
+    if (buyButton) {
+      buyButton.addEventListener("click", () => addToCart(book.id));
+    }
   });
 }
 
@@ -82,6 +87,11 @@ function filteredGenre() {
   }
 }
 
+const sortEl = document.getElementById("sortOption");
+const sortDir = document.getElementById("sortDirection");
+sortEl.addEventListener("change", sortBooks)
+sortDir?.addEventListener("change", sortBooks)
+
 function sortBooks() {
   try {
     const sortBy = document.getElementById("sortOption").value;
@@ -112,6 +122,10 @@ function sortBooks() {
             ? a.title.localeCompare(b.title)
             : b.title.localeCompare(a.title);
         });
+        break;
+        case "default":
+          displayBooks(globalBooks);
+          break;
       default:
         console.log("Invalid sort criteria");
         return;
@@ -128,8 +142,15 @@ function sortBooks() {
   }
 }
 
-function addToCart(id) {
-  const book = globalBooks.at(id - 1);
+function addToCart(id: number): void {
+  // The find method needs a callback function - not just the id
+  const book = globalBooks.find((book) => book.id === id);
+  
+  if (!book) {
+    console.error(`Book with id ${id} not found`);
+    return;
+  }
+  
   console.log(book);
 
   // Find if the book is already in cartBooks
@@ -137,7 +158,7 @@ function addToCart(id) {
 
   if (existingBook) {
     // If book exists, increase quantity
-    existingBook.quantity += 1;
+    existingBook.quantity = (existingBook.quantity || 0) + 1;
   } else {
     // If book does not exist, add it with quantity 1
     cartBooks.push({ ...book, quantity: 1 });
@@ -147,24 +168,26 @@ function addToCart(id) {
   renderCartItems(cartBooks);
 }
 
-function renderCartItems(cartBooks) {
+function renderCartItems(cartBooks: BooksArray): void {
   const cartDiv = document.getElementById("cartDiv");
+  const mainCartDiv = document.getElementById("mainCartDiv");
+  
+  if (!cartDiv || !mainCartDiv) {
+    console.error("Cart elements not found");
+    return;
+  }
+  
   cartDiv.innerHTML = "";
-
   let totalPrice = 0;
-
-  cartBooks.forEach((item, index) => {
+  
+  cartBooks.forEach((item) => {
     const cartBookDiv = document.createElement("div");
     cartBookDiv.classList.add("book");
-
-    const subtotal = item.quantity * item.price;
+    const subtotal = (item.quantity || 0) * item.price;
     totalPrice += subtotal;
-
+    
     cartBookDiv.innerHTML = `
       <img src="${item.image}" alt="${item.title}">
-      <div>
-      
-      </div>
       <p id="warning">${
         item.pages > 500 ? "Warning: Book has over 500 pages" : ""
       }</p>
@@ -177,29 +200,50 @@ function renderCartItems(cartBooks) {
       <p><strong>Price:</strong> Kes ${item.price}</p>
       <p><strong>Quantity:</strong> <span id="qty-${item.id}">${item.quantity}</span></p>
       <div class="quantity-buttons">
-        <button onclick="changeQuantity(${item.id}, -1)">➖</button>
-        <button onclick="changeQuantity(${item.id}, 1)">➕</button>
+        <button class="reduce-btn">➖</button>
+        <button class="increase-btn">➕</button>
       </div>
       <p><strong>Subtotal:</strong> $<span id="subtotal-${item.id}">${subtotal.toFixed(2)}</span></p>
     `;
-
+    
     cartDiv.appendChild(cartBookDiv);
+    
+    // Add event listeners to buttons
+    const addQtyBtn = cartBookDiv.querySelector(".increase-btn");
+    if (addQtyBtn) {
+      addQtyBtn.addEventListener("click", () => changeQuantity(item.id, 1));
+    }
+    
+    const reduceQtyBtn = cartBookDiv.querySelector(".reduce-btn");
+    if (reduceQtyBtn) {
+      reduceQtyBtn.addEventListener("click", () => changeQuantity(item.id, -1));
+    }
   });
-
+  
   // Add total price tally at the bottom of cart
-  totalDiv.id = "totalPriceDiv";
-  totalDiv.innerHTML = `<h3>Total: $<span id="total-price">${totalPrice.toFixed(2)}</span></h3>`;
-  mainCartDiv.appendChild(totalDiv);
+  if (totalDiv) {
+    totalDiv.id = "totalPriceDiv";
+    totalDiv.innerHTML = `<h3>Total: $<span id="total-price">${totalPrice.toFixed(2)}</span></h3>`;
+    mainCartDiv.appendChild(totalDiv);
+  }
 }
 
-function changeQuantity(id, change) {
+
+
+function changeQuantity(id: number, change: number): void {
   const bookIndex = cartBooks.findIndex((item) => item.id === id);
 
   if (bookIndex !== -1) {
-    cartBooks[bookIndex].quantity += change;
+    // Initialize quantity if it's undefined
+    if (cartBooks[bookIndex].quantity === undefined) {
+      cartBooks[bookIndex].quantity = 0;
+    }
+    
+    // Apply the change
+    cartBooks[bookIndex].quantity! += change;
 
     // Remove book if quantity reaches 0
-    if (cartBooks[bookIndex].quantity <= 0) {
+    if (cartBooks[bookIndex].quantity! <= 0) {
       cartBooks.splice(bookIndex, 1);
     }
 
@@ -213,6 +257,8 @@ function changeQuantity(id, change) {
 // Initialize on page load
 document.addEventListener("DOMContentLoaded", fetchBooks);
 
+const showCart = document.getElementById("cart");
+showCart.addEventListener("click", displayCart)
 function displayCart() {
   const mainCartDiv = document.getElementById("mainCartDiv");
 
