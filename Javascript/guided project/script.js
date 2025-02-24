@@ -162,7 +162,7 @@ function renderCartItems(cartBooks) {
       <p><strong>Year:</strong> ${item.year}</p>
       <p><strong>Pages:</strong> ${item.pages}</p>
       <p><strong>Publisher:</strong> ${item.publisher}</p>
-      <p><strong>Price:</strong> $${item.price}</p>
+      <p><strong>Price:</strong> Kes ${item.price}</p>
       <p><strong>Quantity:</strong> <span id="qty-${item.id}">${item.quantity}</span></p>
       <div class="quantity-buttons">
         <button onclick="changeQuantity(${item.id}, -1)">➖</button>
