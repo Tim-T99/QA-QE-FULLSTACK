@@ -208,7 +208,6 @@ function renderCartItems(cartBooks: BooksArray): void {
     
     cartDiv.appendChild(cartBookDiv);
     
-    // Add event listeners to buttons
     const addQtyBtn = cartBookDiv.querySelector(".increase-btn");
     if (addQtyBtn) {
       addQtyBtn.addEventListener("click", () => changeQuantity(item.id, 1));
@@ -220,7 +219,6 @@ function renderCartItems(cartBooks: BooksArray): void {
     }
   });
   
-  // Add total price tally at the bottom of cart
   if (totalDiv) {
     totalDiv.id = "totalPriceDiv";
     totalDiv.innerHTML = `<h3>Total: $<span id="total-price">${totalPrice.toFixed(2)}</span></h3>`;
@@ -234,20 +232,16 @@ function changeQuantity(id: number, change: number): void {
   const bookIndex = cartBooks.findIndex((item) => item.id === id);
 
   if (bookIndex !== -1) {
-    // Initialize quantity if it's undefined
     if (cartBooks[bookIndex].quantity === undefined) {
       cartBooks[bookIndex].quantity = 0;
     }
     
-    // Apply the change
     cartBooks[bookIndex].quantity! += change;
 
-    // Remove book if quantity reaches 0
     if (cartBooks[bookIndex].quantity! <= 0) {
       cartBooks.splice(bookIndex, 1);
     }
 
-    // Re-render the cart with updated quantities
     renderCartItems(cartBooks);
   }
 }
