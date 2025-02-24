@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -206,4 +205,5 @@ document.getElementById("close").onclick = function () {
     document.getElementById("mainCartDiv").style.visibility = "hidden";
     document.getElementById("mainCartDiv").style.opacity = "0";
 };
+export {};
 //# sourceMappingURL=index.js.map

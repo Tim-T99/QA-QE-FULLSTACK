@@ -1,9 +1,9 @@
-import { Book, BooksArray } from "./products";
+import { Book, BooksArray } from "./types";
 
 
 let globalBooks:BooksArray = [];
 let cartBooks:BooksArray = [];
-const totalDiv = document.getElementById("total");
+const totalDiv:HTMLElement | null = document.getElementById("total");
 
 async function fetchBooks() {
   try {
@@ -15,8 +15,11 @@ async function fetchBooks() {
   }
 }
 
-function displayBooks(booksToDisplay:BooksArray) {
-  const booksList = document.getElementById("main");
+function displayBooks(booksToDisplay:BooksArray):void {
+  const booksList:HTMLElement | null = document.getElementById("main");
+  if (!booksList){
+    throw new Error("Books string not available")
+  }
   booksList.innerHTML = "";
 
   booksToDisplay.forEach((book:Book) => {
@@ -40,9 +43,12 @@ function displayBooks(booksToDisplay:BooksArray) {
   });
 }
 
+const changeYear = document.getElementById("year")
+changeYear.addEventListener("keyup", filtered)
+
 function filtered() {
+  const inputYear = document.getElementById("year").value;
   try {
-    const inputYear = document.getElementById("year").value;
     if (inputYear <= 799 || "") {
       displayBooks(globalBooks);
       return;
@@ -57,9 +63,12 @@ function filtered() {
   }
 }
 
+const genreElement = document.getElementById("genre");
+genreElement.addEventListener("change", filteredGenre);
+
 function filteredGenre() {
   try {
-    const inputgenre = document.getElementById("genre":string).value;
+    const inputgenre = document.getElementById("genre").value;
     if (inputgenre === "All") {
       displayBooks(globalBooks);
     } else {
@@ -68,8 +77,8 @@ function filteredGenre() {
       );
       displayBooks(filteredBooks);
     }
-  } catch {
-    console.log("Could not filter");
+  } catch (error) {
+    console.log("Could not filter", error);
   }
 }
 
@@ -119,7 +128,7 @@ function sortBooks() {
   }
 }
 
-function addToCart(id:number) {
+function addToCart(id) {
   const book = globalBooks.at(id - 1);
   console.log(book);
 
