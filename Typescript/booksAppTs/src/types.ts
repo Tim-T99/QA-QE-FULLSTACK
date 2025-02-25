@@ -9,7 +9,7 @@ type Book = {
   description: string,
   image: string,
   price: number,
-  quantity?: null
+  quantity?: number
 }
 
 type BooksArray = Book[]
