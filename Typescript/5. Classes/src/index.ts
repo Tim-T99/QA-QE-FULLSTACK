@@ -97,19 +97,19 @@
 // canvasNode.position = { x: 10, y: 20 };
 
 // // 5: Extending a Class
-// class Shape {
-//   #x: number;
-//   #y: number;
+class Shape {
+  #x: number;
+  #y: number;
 
-//   constructor(options?: { x: number; y: number }) {
-//     this.#x = options?.x ?? 0;
-//     this.#y = options?.y ?? 0;
-//   }
+  constructor(options?: { x: number; y: number }) {
+    this.#x = options?.x ?? 0;
+    this.#y = options?.y ?? 0;
+  }
 
-//   // position getter and setter methods
+  // position getter and setter methods
 
-//   move(x: number, y: number) {
-//     this.#x = x;
-//     this.#y = y;
-//   }
-// }
+  move(x: number, y: number) {
+    this.#x = x;
+    this.#y = y;
+  }
+}
