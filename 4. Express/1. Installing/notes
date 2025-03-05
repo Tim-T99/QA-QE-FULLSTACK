@@ -1,0 +1,20 @@
+npm init -y
+npm i express
+pnpm i -save-dev typescript @types/express ts-node @types/node nodemon
+npx tsc --init
+npm install dotenv --save
+npm i cors
+
+
+in src dir in index.ts:
+import express
+initialize express by assigning to const app
+initialize dotenv.config()
+asssign PORT to const PORT using proces.env.PORT
+
+    app.get('/', (req, res) => {
+        res.send('Hello')
+    }).listen(PORT, () =>{
+        console.log(`Server is running on port: ${PORT}`)
+    })
+
