@@ -18,3 +18,8 @@ asssign PORT to const PORT using proces.env.PORT
         console.log(`Server is running on port: ${PORT}`)
     })
 
+configure dotenv
+instance of express
+middleware  normally uses app.use
+routes app.get, app.post
+create server -listen
