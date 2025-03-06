@@ -30,10 +30,14 @@ const loadBooks = async (args: string = "") => {
 const updateBookDisplay = () => {
   const year = (document.getElementById("year") as HTMLInputElement).value;
   const genre = (document.getElementById("genre") as HTMLSelectElement).value;
-
+  const sortOption = (document.getElementById("sortOption") as HTMLSelectElement).value;
+  const sortDirection = (document.getElementById("sortDirection") as HTMLSelectElement).value;
+  
   const queryParams = new URLSearchParams();
   if (year) queryParams.append("year", year);
   if (genre && genre !== "All") queryParams.append("genre", genre);
+  if (sortOption && sortOption !== "default") queryParams.append("sort", sortOption);
+  if (sortDirection) queryParams.append("direction", sortDirection);
 
   const queryString = queryParams.toString() ? `?${queryParams.toString()}` : "";
   loadBooks(queryString);
@@ -45,3 +49,5 @@ loadBooks();
 // Event listeners for filter changes
 document.getElementById("year")?.addEventListener("input", updateBookDisplay);
 document.getElementById("genre")?.addEventListener("change", updateBookDisplay);
+document.getElementById("sortOption")?.addEventListener("change", updateBookDisplay);
+document.getElementById("sortDirection")?.addEventListener("change", updateBookDisplay);

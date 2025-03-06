@@ -4,20 +4,6 @@ import path from 'path';
 import { readFileSync } from 'fs';
 import cors from 'cors';
 
-export interface Book {
-  id: number;
-  title: string;
-  author: string;
-  genre: string;
-  year: number;
-  pages: number;
-  publisher: string;
-  description: string;
-  image: string;
-  price: number;
-  quantity?: number;
-}
-
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -46,22 +32,34 @@ app.get('/api/booksData', (req, res) => {
 
 app.get('/api/books', (req, res) => {
   try {
-    const { genre, year } = req.query;
+    const { genre, year, sort, direction } = req.query;
     let filteredBooks = [...booksData.books];
 
-    // Filter by genre (exact match)
+    // Filtering
     if (genre && typeof genre === 'string' && genre !== "All") {
       filteredBooks = filteredBooks.filter(book =>
         book.genre.toLowerCase() === genre.toLowerCase()
       );
     }
-
-    // Filter by year (less than or equal to)
     if (year && typeof year === 'string') {
       const yearNum = parseInt(year, 10);
       if (!isNaN(yearNum)) {
         filteredBooks = filteredBooks.filter(book => book.year <= yearNum);
       }
+    }
+
+    // Sorting
+    if (sort && typeof sort === 'string' && direction && typeof direction === 'string') {
+      filteredBooks.sort((a, b) => {
+        const isAsc = direction === 'asc';
+        switch (sort) {
+          case 'title': return isAsc ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title);
+          case 'year': return isAsc ? a.year - b.year : b.year - a.year;
+          case 'genre': return isAsc ? a.genre.localeCompare(b.genre) : b.genre.localeCompare(a.genre);
+          case 'pages': return isAsc ? a.pages - b.pages : b.pages - a.pages;
+          default: return 0;
+        }
+      });
     }
 
     res.status(200).json(filteredBooks);
