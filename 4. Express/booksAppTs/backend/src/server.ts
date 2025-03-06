@@ -30,7 +30,7 @@ app.get('/api/booksData', (req, res) => {
   res.json(booksData);
 });
 
-app.get('/api/books', (req, res) => {
+app.get('/api/booksFilter', (req, res) => {
   try {
     const { genre, year, sort, direction } = req.query;
     let filteredBooks = [...booksData.books];
