@@ -174,3 +174,26 @@ document.getElementById("close")?.addEventListener("click", () => {
     mainCartDiv.style.opacity = "0";
   }
 });
+
+//book form functionality
+document.getElementById("add-book")?.addEventListener("click", displayForm);
+
+function displayForm(): void {
+  const formDiv = document.getElementById("book-form");
+  if (!formDiv) return;
+
+  const isHidden = formDiv.style.visibility === "hidden" || formDiv.style.opacity === "0";
+  formDiv.style.visibility = isHidden ? "visible" : "hidden";
+  formDiv.style.opacity = isHidden ? "1" : "0";
+  formDiv.style.zIndex = isHidden ? "2" : "-1"
+
+  const clearBtn = document.getElementById("clear-form");
+  if (clearBtn) {
+    clearBtn.onclick = () => {
+      cartBooks.length = 0;
+      renderCartItems(cartBooks);
+    };
+    formDiv.appendChild(clearBtn);
+  }
+}
+

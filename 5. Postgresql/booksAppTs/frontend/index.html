@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Library</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Row 1: Header -->
+    <header>
+      <div>
+        <h1>Book Library</h1>
+        <p>Browse our collection of books</p>
+      </div>
+      <div>
+        <button id="cart">
+          <img src="./assets/shopping bag.svg" alt="" />
+        </button>
+      </div>
+      <div id="mainCartDiv">
+        <div id="closeBtn">
+          <h1><strong>Cart</strong></h1>
+          <button id="close" onclick="close()">
+            <img src="./assets/close.svg" alt="" />
+          </button>
+          <button id="clear">
+            Clear all
+          </button>
+          <button id="checkout">
+            Check out
+          </button>
+          <p id="total"></p>
+        </div>
+        <div id="cartDiv"></div>
+      </div>
+    </header>
+
+    <!-- Row 2: Controls -->
+    <div class="controls">
+      <div class="filter-section">
+        <h3>Filter Books</h3>
+        <div>
+          <input type="number" id="year" placeholder="Enter year..." />
+        </div>
+        <div>
+          <select id="genre">
+            <option value="All" selected>All</option>
+            <option value="Fiction">Fiction</option>
+            <option value="Dystopian">Dystopian</option>
+            <option value="Fantasy">Fantasy</option>
+            <option value="Romance">Romance</option>
+            <option value="Adventure">Adventure</option>
+            <option value="Historical Fiction">Historical Fiction</option>
+            <option value="Epic Poetry">Epic Poetry</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="sort-section">
+        <h3>Sort Books</h3>
+        <div>
+          <select id="sortOption">
+            <option value="default">Default</option>
+            <option value="title">Title</option>
+            <option value="year">Year</option>
+            <option value="genre">Genre</option>
+            <option value="pages">Pages</option>
+          </select>
+          <select id="sortDirection">
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="mainFormDiv">
+        <button id="add-book">Post new book</button>
+        <div id="book-form">
+          <form action="post">
+            <input type="text" name="title" id="book-title" placeholder="Title">
+            <button id="clear-form">Clear</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3: Book Display -->
+    <div id="main"></div>
+
+    <script type="module" src="./src/index.ts"></script>
+  </body>
+</html>
+

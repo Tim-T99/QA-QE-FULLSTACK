@@ -1,3 +1,4 @@
 {
-    "terminal.integrated.persistentSessionReviveProcess": "onExitAndWindowClose"
+    "terminal.integrated.persistentSessionReviveProcess": "onExitAndWindowClose",
+    "postman.settings.dotenv-detection-notification-visibility": false
 }
