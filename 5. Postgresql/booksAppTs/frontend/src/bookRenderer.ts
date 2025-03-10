@@ -1,6 +1,6 @@
 export const fetchBooks = async (queryParams: string = "") => {
   try {
-    const response = await fetch(`http://localhost:3000/api/booksFilter${queryParams}`, {
+    const response = await fetch(`http://localhost:3000/api/books${queryParams}`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json"
