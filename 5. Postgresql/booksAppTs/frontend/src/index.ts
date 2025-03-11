@@ -21,12 +21,47 @@ const displayAllBooks = (books: Book[]) => {
       <p><strong>Publisher:</strong> ${book.publisher}</p>
       <p><strong>Description:</strong> ${book.description}</p>
       <p><strong>Price:</strong> ${book.price}</p>
-      <button class="buy-button">Buy Now</button>`;
+      <button class="buy-button">Buy Now</button>
+      <button class="delete-button" data-id="${book.id}">Delete</button>
+    `;
     
     booksList.appendChild(bookDiv);
     bookDiv.querySelector(".buy-button")?.addEventListener("click", () => addToCart(book.id));
+    bookDiv.querySelector(".delete-button")?.addEventListener("click", () => handleDelete(book.id));
   });
 };
+
+// Add delete handler
+async function handleDelete(id: number): Promise<void> {
+  if (confirm('Are you sure you want to delete this book?')) {
+    try {
+      const response = await fetch(`http://localhost:3000/api/bookDelete/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        alert(data.message);
+        // Remove from globalBooks if it exists there
+        globalBooks = globalBooks.filter(book => book.id !== id);
+        // Remove from cart if it exists there
+        cartBooks = cartBooks.filter(book => book.id !== id);
+        // Refresh display
+        updateBookDisplay();
+        renderCartItems(cartBooks);
+      } else {
+        alert(data.message || 'Failed to delete book');
+      }
+    } catch (error) {
+      console.error('Error deleting book:', error);
+      alert('Server error - please try again later');
+    }
+  }
+}
 
 const loadBooks = async (args: string = "") => {
   const books = await fetchBooks(args);
