@@ -175,25 +175,132 @@ document.getElementById("close")?.addEventListener("click", () => {
   }
 });
 
+document.getElementById("closeBtn")?.addEventListener("click", () => {
+  const formDiv = document.getElementById("formDiv");
+  if (formDiv) {
+    formDiv.style.visibility = "hidden";
+    formDiv.style.opacity = "0";
+  }
+});
 //book form functionality
 document.getElementById("add-book")?.addEventListener("click", displayForm);
 
 function displayForm(): void {
-  const formDiv = document.getElementById("book-form");
+  const formDiv = document.getElementById("formDiv");
   if (!formDiv) return;
 
   const isHidden = formDiv.style.visibility === "hidden" || formDiv.style.opacity === "0";
   formDiv.style.visibility = isHidden ? "visible" : "hidden";
   formDiv.style.opacity = isHidden ? "1" : "0";
-  formDiv.style.zIndex = isHidden ? "2" : "-1"
+  formDiv.style.zIndex = isHidden ? "20" : "-1"
 
-  const clearBtn = document.getElementById("clear-form");
-  if (clearBtn) {
-    clearBtn.onclick = () => {
-      cartBooks.length = 0;
-      renderCartItems(cartBooks);
-    };
-    formDiv.appendChild(clearBtn);
-  }
 }
 
+// Add book using form
+document.addEventListener('DOMContentLoaded', () => {
+  // Type the elements correctly with null checks
+  const form = document.getElementById('inputForm') as HTMLFormElement | null;
+  const clearBtn = document.getElementById('clear-form') as HTMLButtonElement | null;
+
+  // Check if form exists before adding event listener
+  if (!form) {
+    console.error('Form element not found');
+    return;
+  }
+
+  // Handle form submission
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault(); // Prevent default form submission
+
+    // Collect form data with proper typing
+    const formData = {
+      image: (document.getElementById('bookImage') as HTMLInputElement).value,
+      title: (document.getElementById('bookTitle') as HTMLInputElement).value,
+      author: (document.getElementById('bookAuthor') as HTMLInputElement).value,
+      genre: (document.getElementById('bookGenre') as HTMLInputElement).value,
+      year: (document.getElementById('bookYear') as HTMLInputElement).value,
+      pages: (document.getElementById('bookPages') as HTMLInputElement).value,
+      publisher: (document.getElementById('bookPublisher') as HTMLInputElement).value,
+      price: (document.getElementById('bookPrice') as HTMLInputElement).value,
+      description: (document.getElementById('bookDescription') as HTMLTextAreaElement).value,
+    };
+
+    try {
+      // Send data to the server
+      const response = await fetch('http://localhost:3000/api/booksPost', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create book');
+      }
+
+      const result = await response.json();
+      console.log(result); // Log success message
+      form.reset(); // Clear the form after successful submission
+    } catch (error) {
+      console.error('Error:', error);
+      alert('Failed to submit book. Please try again.');
+    }
+  });
+
+  // Handle clear button
+  if (clearBtn) {
+    clearBtn.addEventListener('click', (event) => {
+      event.preventDefault(); // Prevent any default behavior
+      form.reset(); // Clear all form fields
+    });
+  } else {
+    console.error('Clear button not found');
+  }
+  
+});
+
+const postBtn = document.getElementById('post') as HTMLButtonElement;
+postBtn.disabled = true;
+try {
+  // fetch request
+} finally {
+  postBtn.disabled = false;
+}
+
+    // document.getElementById('add-book').addEventListener('submit', async (event) => {
+    //   event.preventDefault(); // Prevent form from refreshing the page
+
+    //   const formData = new FormData(event.target);
+    //   const bookData = {
+    //     title: formData.get('bookTitle'),
+    //     author: formData.get('bookAuthor'),
+    //     genre: formData.get('bookGenre'),
+    //     year: formData.get('bookYear'),
+    //     pages: formData.get('bookPages'),
+    //     publisher: formData.get('bookPublisher'),
+    //     description: formData.get('bookDescription'),
+    //     image: formData.get('bookImage'),
+    //     price: formData.get('bookPrice'),
+    //   };
+
+    //   try {
+    //     const response = await fetch('http://localhost:3000/api/booksPost', {
+    //       method: 'POST',
+    //       headers: { 'Content-Type': 'application/json' },
+    //       body: JSON.stringify(bookData),
+    //     });
+
+    //     if (!response.ok) {
+    //       throw new Error('Failed to add book');
+    //     }
+
+    //     const result = await response.json();
+    //     console.log('Book added:', result);
+    //     alert('Book added successfully!');
+    //     event.target.reset(); // Clear the form
+    //   } catch (error) {
+    //     console.error('Error:', error);
+    //     alert('Error adding book: ' + error.message);
+    //   }
+    // });

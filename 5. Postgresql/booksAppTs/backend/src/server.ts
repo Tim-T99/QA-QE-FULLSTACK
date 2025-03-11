@@ -17,20 +17,18 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 
-// const _dirname = path.resolve();
-// let booksData;
+let bookData;
 
-// try {
-//   const rawData = readFileSync(path.join(_dirname, "db", "db.json"), "utf-8");
-//   booksData = JSON.parse(rawData);
-// } catch (error) {
-//   console.error('Error reading books data:', error);
-//   booksData = { books: [] }; // Fallback to empty array
-// }
 
-// app.get('/api/booksData', (req, res) => {
-//   res.json(booksData);
-// });
+app.get('/api/books', async(req, res) => {
+  try {
+      const result = await pool.query("SELECT * FROM public.books ORDER BY id ASC ")
+      res.status(200).json(result.rows)
+  } catch (error) {
+      console.error("Error fetching books:", error);
+      res.status(500).json({ message: "Internal server error" });
+  }
+})
 
 app.post('/api/booksPost', async (req, res) => {
   try {
@@ -57,14 +55,27 @@ app.post('/api/booksPost', async (req, res) => {
     console.error("Error uploading book:", error);
         res.status(500).json({ message: "Internal server error" });
   }
+
+  bookData= req.body
+  
 })
 
-app.get('/api/books', async(req, res) => {
+
+
+app.delete('/api/bookDelete/:id', async(req, res) => {
   try {
-      const result = await pool.query("SELECT * FROM public.books ORDER BY id ASC ")
-      res.status(200).json(result.rows)
+      const {id} =req.params
+
+      const checkBook = await pool.query("SELECT * FROM public.books WHERE id = $1", [id])
+      if (checkBook.rows.length === 0) {
+          res.status(400).json({ message: "Book not found" });
+          return
+     } 
+      await pool.query("DELETE FROM public.books WHERE id = $1",[id]);
+      res.json({ message: "book deleted successful" });
+  
   } catch (error) {
-      console.error("Error fetching books:", error);
+      console.error("Error deleting book:", error);
       res.status(500).json({ message: "Internal server error" });
   }
 })

@@ -82,10 +82,20 @@
 
       <div id="mainFormDiv">
         <button id="add-book">Post new book</button>
-        <div id="book-form">
-          <form action="post">
-            <input type="text" name="title" id="book-title" placeholder="Title">
-            <button id="clear-form">Clear</button>
+        <div id="formDiv">
+          <form id="inputForm">
+            <button id="closeBtn" type="button"><img src="./assets/close.svg" alt="Close"></button>
+            <input type="text" name="image" id="bookImage" placeholder="Image URL">
+            <input type="text" name="title" id="bookTitle" placeholder="Title">
+            <input type="text" name="author" id="bookAuthor" placeholder="Author">
+            <input type="text" name="genre" id="bookGenre" placeholder="Genre">
+            <input type="text" name="year" id="bookYear" placeholder="Year">
+            <input type="text" name="pages" id="bookPages" placeholder="Pages">
+            <input type="text" name="publisher" id="bookPublisher" placeholder="Publisher">
+            <input type="text" name="price" id="bookPrice" placeholder="Price">
+            <textarea name="description" id="bookDescription" placeholder="Description"></textarea>
+            <button type="submit" id="post">Post</button>
+            <button type="button" id="clear-form">Clear</button>
           </form>
         </div>
       </div>
