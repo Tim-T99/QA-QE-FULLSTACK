@@ -31,7 +31,7 @@ export const createBorrower = asyncHandler(  async (req: Request, res: Response)
     }
 })
 
-//Get All users 
+//Get all borrowers
 export const getBorrowers = asyncHandler(  async (req: Request, res: Response) => {
     try {
         const result = await pool.query("SELECT * FROM borrowers ORDER BY user_id ASC ")
@@ -46,7 +46,7 @@ export const getBorrowers = asyncHandler(  async (req: Request, res: Response) =
 export const getBorrowerById = asyncHandler(  async (req: Request, res: Response) => {
     try {
         const { id } = req.params
-        const result = await pool.query("SELECT * FROM public.borrowers WHERE user_id = $1", [id])
+        const result = await pool.query("SELECT * FROM public.borrowers WHERE borrow_id = $1", [id])
         if (result.rows.length === 0) {
             res.status(400).json({ message: "User not found" });
             return
