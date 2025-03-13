@@ -60,8 +60,6 @@ app.post('/api/booksPost', async (req, res) => {
   
 })
 
-
-
 app.delete('/api/bookDelete/:id', async(req, res) => {
   try {
       const {id} =req.params
@@ -80,44 +78,19 @@ app.delete('/api/bookDelete/:id', async(req, res) => {
   }
 })
 
-// app.get('/api/booksFilter', (req, res) => {
-//   try {
-//     const { genre, year, sort, direction } = req.query;
-//     let filteredBooks = [...booksData.books];
+app.put('/api/bookUpdate/:id', async(req, res) => {
+  try {
+    const {id} =req.params
 
-//     // Filtering
-//     if (genre && typeof genre === 'string' && genre !== "All") {
-//       filteredBooks = filteredBooks.filter(book =>
-//         book.genre.toLowerCase() === genre.toLowerCase()
-//       );
-//     }
-//     if (year && typeof year === 'string') {
-//       const yearNum = parseInt(year, 10);
-//       if (!isNaN(yearNum)) {
-//         filteredBooks = filteredBooks.filter(book => book.year <= yearNum);
-//       }
-//     }
-  
-//     // Sorting
-//     if (sort && typeof sort === 'string' && direction && typeof direction === 'string') {
-//       filteredBooks.sort((a, b) => {
-//         const isAsc = direction === 'asc';
-//         switch (sort) {
-//           case 'title': return isAsc ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title);
-//           case 'year': return isAsc ? a.year - b.year : b.year - a.year;
-//           case 'genre': return isAsc ? a.genre.localeCompare(b.genre) : b.genre.localeCompare(a.genre);
-//           case 'pages': return isAsc ? a.pages - b.pages : b.pages - a.pages;
-//           default: return 0;
-//         }
-//       });
-//     }
-
-//     res.status(200).json(filteredBooks);
-//   } catch (error) {
-//     console.error("Error filtering books:", error);
-//     res.status(500).json({ error: "Internal server error" });
-//   }
-// });
+      const checkBook = await pool.query("SELECT * FROM public.books WHERE id = $1", [id])
+      if (checkBook.rows.length === 0) {
+          res.status(400).json({ message: "Book not found" });
+          return
+     } 
+  } catch (error) {
+    
+  }
+})
 
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);
