@@ -4,32 +4,7 @@ import pool from '../config/db.config';
 
 
 // Create users
-export const createUser = asyncHandler(  async (req: Request, res: Response) => {
-    try {
-        const { name, email, password, role_id } = req.body
 
-        //check if email exists
-        const emailCheck = await pool.query("SELECT email FROM users WHERE email = $1", [email])
-
-        if (emailCheck.rows.length > 0) {
-            res.status(400).json({
-                message: "User already exists"
-            })
-            return
-        }
-        //insert the user 
-        const userResult = await pool.query(
-            "INSERT INTO users (name, email, password, role_id) VALUES($1, $2, $3, $4) RETURNING *", [name, email, password, role_id]
-        )
-        res.status(201).json({
-            message: "User successfully created",
-            user: userResult.rows[0]
-        })
-    } catch (error) {
-        console.error("Error creating user:", error);
-        res.status(500).json({ message: "Internal server error" });
-    }
-})
 
 //Get All users 
 export const getUsers = asyncHandler(  async (req: Request, res: Response) => {
