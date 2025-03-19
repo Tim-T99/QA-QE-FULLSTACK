@@ -107,6 +107,29 @@ export const logoutUser = asyncHandler(async (req: Request, res: Response, next:
     res.status(200).json({ message: "User logged out successfully" });
 });
 
+//update user 
+export const updateUser = asyncHandler(   async (req: Request, res: Response) => {
+    try {
+        const { id } = req.params
+        const { name, email, password } = req.body
+
+        const checkUser = await pool.query("SELECT * FROM public.users WHERE user_id = $1", [id])
+        if (checkUser.rows.length === 0) {
+            res.status(400).json({ message: "User not found" });
+            return
+        }
+        const result = await pool.query(
+            "UPDATE users SET name=$1, email=$2, password=$3, updated_at=NOW() WHERE user_id=$4 RETURNING *",
+            [name, email, password, id]
+        );
+        res.json({ message: "User updated", user: result.rows[0] });
+
+    } catch (error) {
+        console.error("Error creating user:", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+})
+
 export const deleteUser = asyncHandler(  async (req: Request, res: Response) => {
     try {
         const { id } = req.params
