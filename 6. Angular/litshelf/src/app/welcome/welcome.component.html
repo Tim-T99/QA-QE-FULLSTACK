@@ -1,15 +1,14 @@
-
-
-<main class="flex w-full h-full gap-15 justify-center items-center m-10 ">
-    <div>
+<main class="flex w-full h-full justify-center items-center bg-[#f0f0f0]">
+    <div class="flex flex-col justify-center items-center h-screen w-1/2">
         <img src="../../assets/litshelfFull.svg" alt="logo" class="flex w-sm"></div>
-    <div>
-        <div class="flex flex-col justify-center items-center bg-teal-700 p-10 rounded-lg gap-5">
-            <p>Welcome to Litshelf</p>
-            <p>New to Litshelf?</p>
-            <button class="btn-">Sign Up</button>
-            <p>or</p>
-            <button>Login</button>
+    <div class="h-screen w-1/2 bg-teal-700 flex flex-col justify-center items-center">
+        <div class="flex flex-col justify-center items-center p-10 rounded-lg gap-5 h-5/10 w-8/10 bg-teal-200/50 bg-blend-lighten ">
+            <img src="../../assets/litshelf.svg" alt="logo" class="flex w-20">
+            <p><strong>Welcome to Litshelf</strong></p>
+            <div class="flex gap-5">
+                <button routerLink="/signup" class="rounded-full bg-white px-2 py-1 cursor-pointer">Sign Up</button>
+                <button routerLink="/login" class="rounded-full border-1 border-white px-2 py-1 cursor-pointer">Login</button>
+            </div>
         </div>
     </div>
 </main>
