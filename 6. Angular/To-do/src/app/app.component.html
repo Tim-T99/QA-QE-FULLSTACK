@@ -1,0 +1,3 @@
+<h1>To Do</h1>
+<app-child1 (emitItemEvent)="addItem($event.name, $event.description)"></app-child1>
+<app-child2 [items]="listItems" (deleteEvent)="deleteItem($event)"></app-child2>

@@ -1,0 +1,8 @@
+<div *ngIf="items.length">
+    <ul>
+      <li *ngFor="let item of items; let i = index">
+        <strong>{{ item.name }}</strong>: {{ item.description }}
+        <button (click)="onDelete(i)">Delete</button>
+      </li>
+    </ul>
+  </div>
