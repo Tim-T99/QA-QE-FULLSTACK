@@ -1,3 +1,5 @@
-<h1>To Do</h1>
-<app-child1 (emitItemEvent)="addItem($event.name, $event.description)"></app-child1>
-<app-child2 [items]="listItems" (deleteEvent)="deleteItem($event)"></app-child2>
+<div class="flex flex-col justify-center items-center w-full h-full">
+    <h1 class="mt-5 font-sans text-2xl"><strong>To Do</strong></h1>
+    <app-child1 class="w-9/10" (emitItemEvent)="addItem($event.name, $event.description)"></app-child1>
+    <app-child2 [items]="listItems" (deleteEvent)="deleteItem($event)"></app-child2>
+</div>
