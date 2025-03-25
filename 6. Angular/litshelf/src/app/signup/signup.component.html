@@ -1,1 +1,19 @@
-<p>signup works!</p>
+<main class="bg-[#f0f0f0] flex justify-center items-center w-screen h-screen m-0 p-0">
+    <div class="h-screen bg-teal-700 flex flex-col justify-center items-center w-screen md:w-2/3 ">
+        <div class="bg-[#f0f0f0] flex flex-col justify-center items-center p-10 gap-2 rounded-md">
+            <img src="../../assets/litshelf.svg" alt="logo" class="flex w-20">
+            <form #form = "ngForm" (ngSubmit)="onSubmit(form)" class="bg-[#f0f0f0] flex flex-col justify-center items-center p-10 gap-2">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required ngModel class="border-1 border-teal-700 rounded-md"> 
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required ngModel class="border-1 border-teal-700 rounded-md"> 
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required ngModel class="border-1 border-teal-700 rounded-md"> 
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required ngModel class="border-1 border-teal-700 rounded-md"> 
+            <button type="submit" class="border-1 bg-teal-700 text-white rounded-lg px-2 py-1 cursor-pointer">Sign Up</button>
+            </form>
+        </div>
+        
+    </div>
+</main>

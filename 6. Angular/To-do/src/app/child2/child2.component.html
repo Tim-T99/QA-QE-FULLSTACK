@@ -1,8 +1,8 @@
 <div *ngIf="items.length">
     <ul>
-      <li *ngFor="let item of items; let i = index" class="bg-gray-100/30 shadow-md shadow-blue-100 rounded-lg  justify-center items-center w-9/10 m-5 p-5">
-        <strong>{{ item.name }}</strong>: {{ item.description }}
-        <button (click)="onDelete(i)" class="bg-red-500 px-3 py-0.5 rounded-md">Delete</button>
+      <li *ngFor="let item of items; let i = index" class="bg-gray-300/10 shadow-md shadow-blue-100 rounded-lg w-100 justify-between items-center m-5 p-5">
+        <p><strong>{{ item.name }}</strong>: {{ item.description }}</p>
+        <button (click)="onDelete(i)" class="bg-red-300 px-3 py-0.5 rounded-md"><img src="delete.svg" alt="delete"></button>
       </li>
     </ul>
   </div>
