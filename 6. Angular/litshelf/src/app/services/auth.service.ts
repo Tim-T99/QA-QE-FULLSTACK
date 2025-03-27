@@ -19,7 +19,7 @@ export class AuthService {
   // Log in user
   login(email: string, password: string): Observable<any> {
     const body = { email, password };
-    return this.http.post(`${this.apiUrl}/login`, body);  // HTTP POST request to backend API
+    return this.http.post(`${this.apiUrl}/auth/login`, body);  // HTTP POST request to backend API
   }
 
   // Get the user role (for example purposes, this is a placeholder)

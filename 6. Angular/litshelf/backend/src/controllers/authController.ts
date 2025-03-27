@@ -29,7 +29,19 @@ export const createUser = asyncHandler(  async (req: Request, res: Response, nex
             "INSERT INTO users (name, email, password) VALUES($1, $2, $3) RETURNING *", [name, email, hashedPassword]
         )
         //generate JWT token for user access 
-    generateToken(res, newUser.rows[0].id, newUser.rows[0].role_id)
+    // generateToken(res, newUser.rows[0].id, newUser.rows[0].role_id)
+    const accessToken = generateToken(
+        res, 
+        String(newUser.rows[0].id),  
+        Number(newUser.rows[0].role_id) 
+      );
+      
+      const refreshToken = generateToken(
+        res, 
+        String(newUser.rows[0].id),  
+        Number(newUser.rows[0].role_id)
+      );
+
 
     res.status(201).json({
         message: "User registered successfully",

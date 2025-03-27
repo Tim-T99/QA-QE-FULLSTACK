@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { passwordMatcher } from '../validators/password-matcher.validator';
 import { AuthService } from '../services/auth.service';
 import { userData } from '../types/types';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -13,10 +14,13 @@ import { userData } from '../types/types';
   styleUrl: './signup.component.css'
 })
 export class SignupComponent {
+
+
   private fb = inject(FormBuilder);
   private http = inject(HttpClient);
   private authService = inject(AuthService)
-  private existingUsernames = ['john_doe', 'jane_smith', 'admin'];
+  private router = inject(Router)
+  private existingUsernames = ['john_doe', 'jane_smith', 'admin', 'librarian'];
 
   signupForm = this.fb.group({
     username: ['', [Validators.required]],
@@ -30,16 +34,16 @@ export class SignupComponent {
 onSubmit(){
   if (this.signupForm.valid) {
     const formData = this.signupForm.value;
-    console.log('Form Data:', formData);
 
     const username = formData.username as string;
     const email = formData.email as string;
     const password = formData.password as string;
 
     this.authService.signup(username, email, password).subscribe({
-      next: (response) => {console.log('Data saved successfully:', response);
+      next: () => {
         window.alert('Data submitted!');
         this.signupForm.reset()
+        this.router.navigate(['/home']);
       },
       error: (error) => {console.error('Error saving data:', error)
         if (error.status === 400 && error.error.message === 'User already exists') {
