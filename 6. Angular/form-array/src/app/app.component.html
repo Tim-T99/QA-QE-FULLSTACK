@@ -1,39 +1,44 @@
 <main>
   <div>
-    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="bg-[#f0f0f0] flex flex-col justify-center items-center p-10 gap-2">
+    <form #form='ngForm' [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="bg-[#f0f0f0] flex flex-col justify-center items-center p-10 gap-2">
+      <!-- Username -->
       <label for="username">Username</label>
-      <input type="text" id="username" name="username" formControlName="username" required class="border-1 border-teal-700 rounded-md">
-
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" formControlName="email" required class="border-1 border-teal-700 rounded-md">
-
-      <label for="position">Position</label>
-      <input type="text" id="position" name="position" formControlName="position" required class="border-1 border-teal-700 rounded-md">
-
-      <p>Enter at least 3 skills</p>
-      <div formGroupName="skills" class="grid grid-cols-2 gap-4">
-        <p>
-          <label for="skill1">Skill 1:  </label>
-          <input type="text" id="skill1" name="skill1" formControlName="skill1" required class="border-1 border-teal-700 rounded-md">
-        </p>
-
-        <p>
-          <label for="skill2">Skill 2:  </label>
-          <input type="text" id="skill2" name="skill2" formControlName="skill2" required class="border-1 border-teal-700 rounded-md">
-        </p>
-
-        <p>
-          <label for="skill3">Skill 3:  </label>
-          <input type="text" id="skill3" name="skill3" formControlName="skill3" required class="border-1 border-teal-700 rounded-md">
-        </p>
-
-        <p>
-          <label for="skill4">Skill 4:  </label>
-          <input type="text" id="skill4" name="skill4" formControlName="skill4" required class="border-1 border-teal-700 rounded-md">
-        </p>
+      <input type="text" id="username" formControlName="username" class="border-1 border-teal-700 rounded-md">
+      <div *ngIf="profileForm.get('username')?.touched && profileForm.get('username')?.errors" class="text-red-500">
+        <span *ngIf="profileForm.get('username')?.errors?.['required']">Username is required.</span>
+        <span *ngIf="profileForm.get('username')?.errors?.['usernameTaken']">Username is already taken.</span>
       </div>
 
-      <button type="submit" class="border-1 bg-teal-700 text-white rounded-lg px-2 py-1 cursor-pointer">Sign Up</button>
+      <!-- Email -->
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" class="border-1 border-teal-700 rounded-md">
+      <div *ngIf="profileForm.get('email')?.touched && profileForm.get('email')?.errors" class="text-red-500">
+        <span *ngIf="profileForm.get('email')?.errors?.['required']">Email is required.</span>
+        <span *ngIf="profileForm.get('email')?.errors?.['email']">Invalid email format.</span>
+      </div>
+
+      <!-- Position -->
+      <label for="position">Position</label>
+      <input type="text" id="position" formControlName="position" class="border-1 border-teal-700 rounded-md">
+      <div *ngIf="profileForm.get('position')?.touched && profileForm.get('position')?.errors" class="text-red-500">
+        <span *ngIf="profileForm.get('position')?.errors?.['required']">Position is required.</span>
+      </div>
+
+      <!-- Skills (FormArray) -->
+      <div>
+        <h3>Skills</h3>
+        <div *ngFor="let skill of skills.controls; let i = index" class="flex gap-2 items-center">
+          <input [formControl]="skill" type="text" [id]="'skill' + i" class="border-1 border-teal-700 rounded-md">
+          <button type="button" (click)="removeSkill(i)" class="text-red-500">Remove</button>
+          <div *ngIf="skill.touched && skill.errors" class="text-red-500">
+            <span *ngIf="skill.errors?.['required']">Skill is required.</span>
+          </div>
+        </div>
+        <button type="button" (click)="addSkill()" class="border-1 bg-teal-700 text-white rounded-lg px-2 py-1 mt-2">Add Skill</button>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" [disabled]="profileForm.invalid" class="border-1 bg-teal-700 text-white rounded-lg px-2 py-1 cursor-pointer">Submit</button>
     </form>
   </div>
 </main>

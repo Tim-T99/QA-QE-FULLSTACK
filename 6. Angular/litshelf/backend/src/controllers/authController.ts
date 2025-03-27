@@ -8,7 +8,7 @@ import * as jwt from 'jsonwebtoken';
 
 export const createUser = asyncHandler(  async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const { name, email, password, role_id } = req.body
+        const { name, email, password} = req.body
 
         //check if email exists
         const emailCheck = await pool.query("SELECT email FROM users WHERE email = $1", [email])
@@ -26,7 +26,7 @@ export const createUser = asyncHandler(  async (req: Request, res: Response, nex
 
         //insert the user 
         const newUser = await pool.query(
-            "INSERT INTO users (name, email, password, role_id) VALUES($1, $2, $3, $4) RETURNING *", [name, email, hashedPassword, role_id]
+            "INSERT INTO users (name, email, password) VALUES($1, $2, $3) RETURNING *", [name, email, hashedPassword]
         )
         //generate JWT token for user access 
     generateToken(res, newUser.rows[0].id, newUser.rows[0].role_id)

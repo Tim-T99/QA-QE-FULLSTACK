@@ -1,30 +1,65 @@
 import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms'; 
+import { FormBuilder, FormArray, Validators, ReactiveFormsModule, AsyncValidatorFn, AbstractControl, ValidationErrors, FormControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Observable, of } from 'rxjs';
+import { map, delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule], 
+  imports: [ReactiveFormsModule, CommonModule, HttpClientModule],
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'] 
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  private formBuilder = inject(FormBuilder);
+  private fb = inject(FormBuilder);
+  private http = inject(HttpClient);
 
-  profileForm = this.formBuilder.group({
-    username: ['', [Validators.required]],
-    email: ['', [Validators.required]],
+  private existingUsernames = ['john_doe', 'jane_smith', 'admin'];
+
+  profileForm = this.fb.group({
+    username: ['', [Validators.required], [this.usernameValidator()]],
+    email: ['', [Validators.required, Validators.email]],
     position: ['', [Validators.required]],
-    skills: this.formBuilder.group({
-      skill1: ['', [Validators.required]],
-      skill2: ['', [Validators.required]],
-      skill3: ['', [Validators.required]],
-      skill4: [''],
-    }),
+    skills: this.fb.array([])
   });
 
+  get skills(): FormArray<FormControl> {
+    return this.profileForm.get('skills') as FormArray<FormControl>;
+  }
+
+  addSkill() {
+    this.skills.push(this.fb.control('', Validators.required));
+  }
+
+  removeSkill(index: number) {
+    this.skills.removeAt(index);
+  }
+
+  usernameValidator(): AsyncValidatorFn {
+    return (control: AbstractControl): Observable<ValidationErrors | null> => {
+      const username = control.value.toLowerCase();
+      return of(this.existingUsernames.includes(username)).pipe(
+        delay(500),
+        map(exists => (exists ? { usernameTaken: true } : null))
+      );
+    };
+  }
+
   onSubmit() {
-    console.log(this.profileForm.value)
+    if (this.profileForm.valid) {
+      const formData = this.profileForm.value;
+      console.log('Form Data:', formData);
+      this.http.post('http://localhost:3000/api/submit', formData).subscribe({ 
+        next: (response) => {console.log('Data saved successfully:', response);
+          window.alert('Application submitted!');    // Show alert on success
+          this.profileForm.reset();
+        },
+        error: (error) => console.error('Error saving data:', error)
+      });
+    } else {
+      console.log('Form is invalid');
+    }
   }
 }

@@ -1,28 +1,29 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  private apiUrl = 'http://localhost:3000/api';
+  private apiUrl = 'http://localhost:3000/api';  // Replace with your backend API URL
 
   constructor(private http: HttpClient) { }
 
-  signup(username: string, email:string, password:string): Observable<any>{
-    console.log('Signing up:', {username, email, password});
-    return of({message: 'Signup successful'})
+  // Sign up new user
+  signup(name: string, email: string, password: string): Observable<any> {
+    const body = { name, email, password };
+    return this.http.post(`${this.apiUrl}/auth/register`, body);  // HTTP POST request to backend API
   }
 
-  login(email:string, password:string): Observable<any>{
-    console.log('Logging in:', {email, password})
-    return of({message: 'Login successful'})
+  // Log in user
+  login(email: string, password: string): Observable<any> {
+    const body = { email, password };
+    return this.http.post(`${this.apiUrl}/login`, body);  // HTTP POST request to backend API
   }
 
+  // Get the user role (for example purposes, this is a placeholder)
   getUserRole(): Observable<number> {
-    // Placeholder: Assume role_id 3 (Borrower) for now
-    return of (3);
+    return this.http.get<number>(`${this.apiUrl}/user-role`);  // HTTP GET request to get user role
   }
 }
