@@ -1,0 +1,10 @@
+<h1>Twitter-Clone</h1>
+<app-users (userSelected)="selectedUserId = $event"></app-users>
+<app-posts
+      [userId]="selectedUserId ?? undefined" 
+      (postSelected)="selectedPostId = $event">
+    </app-posts>
+
+    <app-comments 
+      [postId]="selectedPostId ?? undefined">
+    </app-comments>

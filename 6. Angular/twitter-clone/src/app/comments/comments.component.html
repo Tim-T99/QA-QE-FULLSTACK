@@ -1,0 +1,7 @@
+<h2>Comments</h2>
+<ul>
+  <li *ngFor="let comment of comments">
+    <strong>{{ comment.name }}</strong> ({{ comment.email }})
+    <p>{{ comment.body }}</p>
+  </li>
+</ul>

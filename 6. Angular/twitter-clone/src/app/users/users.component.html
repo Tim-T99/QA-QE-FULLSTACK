@@ -1,0 +1,10 @@
+<div>
+    <h2>Users</h2>
+    <select (change)="selectUser($event)">
+        <option *ngFor="let user of users" [value]="user.id">
+          {{ user?.username }}
+        </option>
+      </select>
+      
+      
+</div>
