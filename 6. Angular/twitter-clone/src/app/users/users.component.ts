@@ -11,6 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class UsersComponent implements OnInit {
   users: any[]=[]
+  selectedUserId:number = 1;
 
   @Output() userSelected = new EventEmitter<number>()
 

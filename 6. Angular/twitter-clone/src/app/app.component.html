@@ -1,22 +1,22 @@
-<main class="flex flex-row bg-gray-900 text-gray-200 gap-5 w-screen h-full p-4 overflow-scroll">
-  <aside class="w-1/4 bg-gray-800 p-4 rounded-lg border border-gray-700">
-    <h1 class="text-1xl font-bold text-blue-400">Twitter-Clone</h1>
-    <app-users 
-      (userSelected)="selectedUserId = $event"
-      class="flex flex-col mt-4 w-full">
-    </app-users>
-  </aside>
-
-  <section class="w-2/4 bg-gray-800 p-4 rounded-lg border border-gray-700">
-    <app-posts
-      [userId]="selectedUserId ?? undefined"
-      (postSelected)="selectedPostId = $event">
-    </app-posts>
-  </section>
-
-  <aside class="w-1/2 bg-gray-800 p-4 rounded-lg border border-gray-700">
-    <app-comments
-      [postId]="selectedPostId ?? undefined">
-    </app-comments>
-  </aside>
+<main class="flex flex-row bg-gray-900 text-gray-200 gap-5 w-screen h-screen p-4 overflow-hidden">
+  <div class="flex flex-row bg-gray-900 text-gray-200 gap-5 w-screen h-screen p-4">
+    <aside class="w-1/4 bg-gray-800 p-4 rounded-lg border border-gray-700">
+      <h1 class="text-1xl font-bold text-blue-400">Twitter-Clone</h1>
+      <app-users
+        (userSelected)="selectedUserId = $event"
+        class="flex flex-col mt-4">
+      </app-users>
+    </aside>
+    <section class="w-2/4 bg-gray-800 p-4 rounded-lg border border-gray-700 overflow-y-scroll">
+      <app-posts
+        [userId]="selectedUserId ?? undefined"
+        (postSelected)="selectedPostId = $event">
+      </app-posts>
+    </section>
+    <aside class="w-1/2 bg-gray-800 p-4 rounded-lg border border-gray-700 overflow-y-scroll">
+      <app-comments
+        [postId]="selectedPostId ?? undefined">
+      </app-comments>
+    </aside>
+  </div>
 </main>

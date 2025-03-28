@@ -17,11 +17,23 @@ export class PostsComponent {
   selectedPostId?: number;
   private apiService = inject(ApiService);
 
+  ngOnInit() {
+    this.loadPosts();
+  }
+
   ngOnChanges(changes:SimpleChanges){
     if (changes['userId'] && this.userId)
     this.apiService.getPosts(this.userId).subscribe(data => this.posts = data)
   }
 
+  loadPosts() {
+    if (this.userId) {
+      this.apiService.getPosts(this.userId).subscribe(data => {
+        this.posts = data;
+      });
+    }
+  }
+  
   selectPost(postId:number){
     console.log('Selected post id:', postId);
     this.selectedPostId = postId;
