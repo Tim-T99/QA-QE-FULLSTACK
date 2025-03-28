@@ -20,7 +20,8 @@ export class UsersComponent implements OnInit {
   ngOnInit(){
     this.apiService.getUsers().subscribe(data => {this.users = data;
       if (data.length > 0) {
-        this.selectedUserId = data[0].id
+        this.selectedUserId = data[0].id;
+        this.userSelected.emit(this.selectedUserId);
       }
     })
   }
