@@ -1,10 +1,12 @@
-<div>
-    <h2>Users</h2>
-    <select (change)="selectUser($event)">
-        <option *ngFor="let user of users" [value]="user.id">
-          {{ user?.username }}
-        </option>
-      </select>
-      
-      
+<div class="bg-gray-800 rounded-lg p-4 space-y-3 border border-gray-700">
+  <h2 class="text-white font-bold text-xl">Users</h2>
+
+  <select 
+    (change)="selectUser($event)" 
+    class="p-2 bg-gray-900 text-gray-300 font-medium text-sm rounded-md border border-gray-700 focus:ring-2 focus:ring-blue-400 outline-none transition"
+  >
+    <option *ngFor="let user of users" [value]="user.id">
+      {{ user?.username }}
+    </option>
+  </select>
 </div>

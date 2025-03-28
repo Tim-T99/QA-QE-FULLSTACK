@@ -1,7 +1,14 @@
-<h2>Comments</h2>
-<ul>
-  <li *ngFor="let comment of comments">
-    <strong>{{ comment.name }}</strong> ({{ comment.email }})
-    <p>{{ comment.body }}</p>
-  </li>
-</ul>
+<div class="bg-gray-800 rounded-lg p-5 space-y-4 border border-gray-700">
+  <h2 class="text-white font-bold text-2xl">Comments</h2>
+  
+  <ul class="space-y-4">
+    <li 
+      *ngFor="let comment of comments" 
+      class="p-4 bg-gray-900 rounded-lg border border-gray-700 hover:bg-gray-700 transition"
+    >
+      <strong class="text-blue-400 block">{{ comment.name }}</strong> 
+      <span class="text-gray-400 text-sm block">{{ comment.email }}</span>
+      <p class="text-gray-300 mt-2">{{ comment.body }}</p>
+    </li>
+  </ul>
+</div>

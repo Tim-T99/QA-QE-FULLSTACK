@@ -14,7 +14,7 @@ export class PostsComponent {
   @Output() postSelected = new EventEmitter<number>()
 
   posts: any[] = []
-
+  selectedPostId?: number;
   private apiService = inject(ApiService);
 
   ngOnChanges(changes:SimpleChanges){
@@ -24,6 +24,7 @@ export class PostsComponent {
 
   selectPost(postId:number){
     console.log('Selected post id:', postId);
+    this.selectedPostId = postId;
     this.postSelected.emit(postId)
   }
 }
