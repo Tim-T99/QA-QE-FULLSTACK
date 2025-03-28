@@ -18,7 +18,11 @@ export class UsersComponent implements OnInit {
   private apiService = inject(ApiService);
 
   ngOnInit(){
-    this.apiService.getUsers().subscribe(data => this.users = data)
+    this.apiService.getUsers().subscribe(data => {this.users = data;
+      if (data.length > 0) {
+        this.selectedUserId = data[0].id
+      }
+    })
   }
 
   selectUser(event: Event): void {
