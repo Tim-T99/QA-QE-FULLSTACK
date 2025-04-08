@@ -1,0 +1,103 @@
+<main class="bg-[#f0f0f0] flex w-screen h-screen m-0 p-0">
+    <div class="hidden lg:flex h-screen lg:bg-[#000d1c] p-[5rem] lg:flex-col justify-center items-center lg:w-[50%] gap-5">    <img src="./assets/skillmatch_l.svg" alt="brand" class="w-2/3">
+        <p class="text-[2rem] font-bold">We're glad to have you!</p>
+        </div>
+    <div class="bg-[#000d1c] w-full lg:bg-[#f0f0f0] lg:w-[50%] flex flex-col justify-center items-center p-10 gap-2 rounded-md">
+        <img src="./assets/skillmatch_l.svg" alt="brand" class="w-2/3 lg:hidden py-5">
+        <img src="./assets/logo.svg" alt="logo" class="hidden lg:flex w-20">
+        <h3 class="hidden lg:flex lg:text-[#000d1c] font-bold text-4xl">Login</h3>
+        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="bg-[#f0f0f0] flex flex-col justify-center items-start p-10 gap-5 lg:gap-10">
+            <h3 class="lg:hidden text-[#000d1c] font-bold text-2xl">Login</h3>
+            <h4 class="text-[#000d1c]">Personal information</h4>
+            <!-- Names -->
+            <div class="flex flex-row gap-10 lg:gap-30">
+                <input type="text" id="firstname" formControlName="firstname" class="border-1 border-[#ff4900] w-[25vw] h-[8vw] lg:w-[12vw] lg:h-[2vw] bg-[#f0f0f0] px-5 py-2 rounded-md text-[#000d1c]" placeholder="First name">
+                <div *ngIf="signupForm.get('firstname')?.touched && signupForm.get('firstname')?.errors" class="text-red-500">
+                  <span *ngIf="signupForm.get('firstname')?.errors?.['required']">First name is required.</span>
+                </div>
+
+                <input type="text" id="secondname" formControlName="secondname" class="border-1 border-[#ff4900] w-[25vw] h-[8vw] lg:w-[12vw] lg:h-[2vw] bg-[#f0f0f0] px-5 py-2 rounded-md text-[#000d1c]" placeholder="Second name">
+                <div *ngIf="signupForm.get('secondname')?.touched && signupForm.get('secondname')?.errors" class="text-red-500">
+                  <span *ngIf="signupForm.get('secondname')?.errors?.['required']">Second name is required.</span>
+                </div>
+            </div>
+      
+            <!-- Email -->
+            <input type="email" id="email" formControlName="email" class="border-1 border-[#ff4900] w-full h-[8vw] lg:h-[2vw] bg-[#f0f0f0] px-5 py-2 rounded-md text-[#000d1c]" placeholder="Email">
+            <div *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.errors" class="text-red-500">
+              <span *ngIf="signupForm.get('email')?.errors?.['required']">Email is required.</span>
+              <span *ngIf="signupForm.get('email')?.errors?.['email']">Invalid email format.</span>
+              <span *ngIf="signupForm.get('email')?.errors?.['emailTaken']">Email already exists.</span>
+            </div>
+            
+            <div class="flex flex-row gap-10 lg:gap-30">
+                <input type="text" id="telephone1" formControlName="telephone1" class="border-1 border-[#ff4900] w-[25vw] h-[8vw] lg:w-[12vw] lg:h-[2vw] bg-[#f0f0f0] px-5 py-2 rounded-md text-[#000d1c]" placeholder="Telephone 1">
+                <div *ngIf="signupForm.get('telephone1')?.touched && signupForm.get('telephone1')?.errors" class="text-red-500">
+                  <span *ngIf="signupForm.get('telephone1')?.errors?.['required']">Telephone is required.</span>
+                  <span *ngIf="signupForm.get('telephone2')?.errors?.['telephone1Taken']">Telephone is already registered.</span>
+                </div>
+
+                <input type="text" id="telephone2" formControlName="telephone2" class="border-1 border-[#ff4900] w-[25vw] h-[8vw] lg:w-[12vw] lg:h-[2vw] bg-[#f0f0f0] px-5 py-2 rounded-md text-[#000d1c]" placeholder="Telephone 2">
+                <div *ngIf="signupForm.get('telephone2')?.touched && signupForm.get('telephone2')?.errors" class="text-red-500">
+                  <span *ngIf="signupForm.get('telephone2')?.errors?.['required']">Telephone is required.</span>
+                  <span *ngIf="signupForm.get('telephone2')?.errors?.['telephone2Taken']">Telephone is already registered.</span>
+                </div>
+            </div>
+
+            <div class="flex flex-row gap-10 lg:gap-30">
+                <input type="text" id="address" formControlName="address" class="border-1 border-[#ff4900] w-[25vw] h-[8vw] lg:w-[12vw] lg:h-[2vw] bg-[#f0f0f0] px-5 py-2 rounded-md text-[#000d1c]" placeholder="Address">
+                <div *ngIf="signupForm.get('address')?.touched && signupForm.get('username')?.errors" class="text-red-500">
+                  <span *ngIf="signupForm.get('address')?.errors?.['required']">Address is required.</span>
+                </div>
+
+                <input type="text" id="postalcode" formControlName="postalcode" class="border-1 border-[#ff4900] w-[25vw] h-[8vw] lg:w-[12vw] lg:h-[2vw] bg-[#f0f0f0] px-5 py-2 rounded-md text-[#000d1c]" placeholder="Postal Code">
+                <div *ngIf="signupForm.get('postalcode')?.touched && signupForm.get('username')?.errors" class="text-red-500">
+                  <span *ngIf="signupForm.get('postalcode')?.errors?.['required']">Postal code is required.</span>
+                </div>
+            </div>
+            <!-- Company information -->
+            <h4 class="text-[#000d1c]">Company information</h4>
+            <div class="w-full">
+                <input type="password" id="companyName" name="companyName" formControlName="companyName" required class="border-1 border-[#ff4900] w-full h-[8vw] lg:h-[2vw] bg-[#f0f0f0] px-5 py-2 rounded-md text-[#000d1c]" placeholder="Company name">
+                <div class="text-red-500">
+                    <span *ngIf="signupForm.get('companyName')?.errors?.['required'] && signupForm.get('companyName')?.touched">Company name is required.</span>
+                  </div>
+            </div>
+
+              <div class="flex flex-row gap-10 lg:gap-30">
+                <input type="text" id="address" formControlName="address" class="border-1 border-[#ff4900] w-[25vw] h-[8vw] lg:w-[12vw] lg:h-[2vw] bg-[#f0f0f0] px-5 py-2 rounded-md text-[#000d1c]" placeholder="Address">
+                <div *ngIf="signupForm.get('address')?.touched && signupForm.get('address')?.errors" class="text-red-500">
+                  <span *ngIf="signupForm.get('address')?.errors?.['required']">Address is required.</span>
+                </div>
+
+                <input type="text" id="postalCode" formControlName="postalCode" class="border-1 border-[#ff4900] w-[25vw] h-[8vw] lg:w-[12vw] lg:h-[2vw] bg-[#f0f0f0] px-5 py-2 rounded-md text-[#000d1c]" placeholder="Postal Code">
+                <div *ngIf="signupForm.get('postalCode')?.touched && signupForm.get('postalCode')?.errors" class="text-red-500">
+                  <span *ngIf="signupForm.get('postalCode')?.errors?.['required']">Postal code is required.</span>
+                </div>
+            </div>
+
+        
+        <div class="flex flex-col gap-2 w-full">
+            <input type="password" id="confirmPassword" name="confirmPassword" formControlName="confirmPassword" required class="border-1 border-[#ff4900] w-full h-[8vw] lg:w-[12vw] lg:h-[2vw] bg-[#f0f0f0] px-5 py-2 rounded-md text-[#000d1c]" placeholder="Industry">
+        </div> 
+
+        <!-- Security -->
+        <h4 class="text-[#000d1c]">Security</h4>
+        <div class="flex flex-row gap-10 lg:gap-30">
+            <input type="text" id="password" formControlName="password" class="border-1 border-[#ff4900] w-[25vw] h-[8vw] lg:w-[12vw] lg:h-[2vw] bg-[#f0f0f0] px-5 py-2 rounded-md text-[#000d1c]" placeholder="Password">
+            <div *ngIf="signupForm.get('password')?.touched && signupForm.get('password')?.errors" class="text-red-500">
+              <span *ngIf="signupForm.get('password')?.errors?.['required']">Password is required.</span>
+              <span *ngIf="signupForm.get('password')?.errors?.['minlength']">Password must be atleast 8 characters.</span>
+
+            </div>
+
+            <input type="text" id="confirmPassword" formControlName="confirmPassword" class="border-1 border-[#ff4900] w-[25vw] h-[8vw] lg:w-[12vw] lg:h-[2vw] bg-[#f0f0f0] px-5 py-2 rounded-md text-[#000d1c]" placeholder="Confirm Password">
+            <div *ngIf="signupForm.get('confirmPassword')?.touched && signupForm.get('confirmPassword')?.errors" class="text-red-500">
+              <span *ngIf="signupForm.get('confirmPassword')?.errors?.['required']">Password is required.</span>
+              <span *ngIf="signupForm.hasError('passwordMismatch') && signupForm.get('confirmPassword')?.touched" class="text-red-500">Passwords do not match</span>
+            </div>
+        </div>
+        <button type="submit" class="primary-btn">Sign Up</button>
+        </form>
+    </div>
+</main>

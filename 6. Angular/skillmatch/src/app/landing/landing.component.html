@@ -1,7 +1,7 @@
 <app-navbar></app-navbar>
 <section id="hero">
     <h1 class="text-9xl font-black text-center"><span class="text-[#ff4900]">Welcome</span> to <br>Skillmatch A.I</h1>
-    <p class="px-[2rem] lg:px-[10rem] mt-[3rem] text-center text-wrap">Where your dream job finds you!<br>Powered by cutting-edge AI, we take the guesswork out of job hunting by perfectly pairing your unique skills, experience, and aspirations with opportunities that fit you best. Say goodbye to endless scrolling and generic applications. Our intelligent platform analyzes your profile and connects you with employers who value what you bring to the table. </p>
+    <p class="px-[2rem] lg:px-[10rem] pt-[3rem] text-center text-wrap">Where your dream job finds you!<br>Powered by cutting-edge AI, we take the guesswork out of job hunting by perfectly pairing your unique skills, experience, and aspirations with opportunities that fit you best. Say goodbye to endless scrolling and generic applications. Our intelligent platform analyzes your profile and connects you with employers who value what you bring to the table. </p>
 </section>
 
 <section class="p-5 flex flex-col justify-center items-center">
@@ -30,11 +30,37 @@
 </section>
 <section>
     <h2>Contact Us</h2>
-    <form class="w-full px-[10vw] flex flex-col justify-center items-start gap-5">
-        <input type="text" placeholder="Name" class="w-[50vw] h-[8vw] lg:w-[25vw] lg:h-[2vw] bg-[#f0f0f0] text-gray-800 px-5 py-2 rounded-md">
-        <input type="email" placeholder="Email" class="w-[50vw] h-[8vw] lg:w-[25vw] lg:h-[2vw] bg-[#f0f0f0] text-gray-800 px-5 py-2 rounded-md">
-        <textarea type="text" placeholder="Message" class="w-[50vw] min-h-[15vw] max-h-[50vw] lg:w-[50vw] lg:min-h-[6vw] lg:max-h-[12vw] bg-[#f0f0f0] text-gray-800 px-5 py-2 rounded-md"></textarea>
-        <button class="primary-btn">Send</button>
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="w-full px-[10vw] flex flex-col justify-center items-start gap-5">
+        <input 
+            type="text" 
+            formControlName="name"
+            placeholder="Name" 
+            class="w-[50vw] h-[8vw] lg:w-[25vw] lg:h-[2vw] bg-[#f0f0f0] text-gray-800 px-5 py-2 rounded-md">
+            <div *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.errors" class="text-red-500">
+                <span *ngIf="contactForm.get('name')?.errors?.['required']">Name is required.</span>
+              </div>
+        <input 
+            type="email" 
+            formControlName="email"
+            placeholder="Email" 
+            class="w-[50vw] h-[8vw] lg:w-[25vw] lg:h-[2vw] bg-[#f0f0f0] text-gray-800 px-5 py-2 rounded-md">
+            <div *ngIf="contactForm.get('email')?.touched && contactForm.get('email')?.errors" class="text-red-500">
+                <span *ngIf="contactForm.get('email')?.errors?.['required']">Email is required.</span>
+                <span *ngIf="contactForm.get('email')?.errors?.['email']">Invalid email format.</span>
+              </div>
+        <textarea 
+            formControlName="message"
+            placeholder="Message" 
+            class="w-[50vw] min-h-[15vw] max-h-[50vw] lg:w-[50vw] lg:min-h-[6vw] lg:max-h-[12vw] bg-[#f0f0f0] text-black px-5 py-2 rounded-md"></textarea>
+            <div *ngIf="contactForm.get('message')?.touched && contactForm.get('message')?.errors" class="text-red-500">
+                <span *ngIf="contactForm.get('message')?.errors?.['required']">Message is required.</span>
+              </div>
+        <button 
+            type="submit" 
+            class="primary-btn"
+            [disabled]="contactForm.invalid">
+            Send
+        </button>
     </form>
 </section>
 
