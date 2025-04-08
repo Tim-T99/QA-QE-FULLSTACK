@@ -55,7 +55,7 @@ onSubmit(){
       }
     });
   } else {
-    console.log('Form is invalid');
+    window.alert('Please fill all fields')
   }
 }
 }
