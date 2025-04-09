@@ -15,7 +15,6 @@ import { Router } from '@angular/router';
 })
 export class SignupComponent {
 
-
   private fb = inject(FormBuilder);
   private http = inject(HttpClient);
   private authService = inject(AuthService)
@@ -23,8 +22,16 @@ export class SignupComponent {
   private existingUsernames = ['john_doe', 'jane_smith', 'admin', 'librarian'];
 
   signupForm = this.fb.group({
-    username: ['', [Validators.required]],
+    firstName: ['', [Validators.required]],
+    secondName: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
+    telephone1: ['', [Validators.required]],
+    telephone2: ['', [Validators.required]],
+    address: ['', [Validators.required]],
+    postalCode: ['', [Validators.required]],
+    companyName: ['', [Validators.required]],
+    companyAddress: ['', [Validators.required]],
+    companyPostalCode: ['', [Validators.required]],
     password: ['', [Validators.required, Validators.minLength(8)]],
     confirmPassword: ['', [Validators.required]],
   },
@@ -34,12 +41,20 @@ export class SignupComponent {
 onSubmit(){
   if (this.signupForm.valid) {
     const formData = this.signupForm.value;
-
-    const username = formData.username as string;
+    
+    const firstName = formData.firstName as string;
+    const secondName = formData.firstName as string;
     const email = formData.email as string;
+    const telephone1 = formData.firstName as string;
+    const telephone2 = formData.firstName as string;
+    const address = formData.firstName as string;
+    const postalCode = formData.firstName as string;
+    const companyName = formData.firstName as string;
+    const companyAddress = formData.firstName as string;
+    const companyPostalCode = formData.firstName as string;
     const password = formData.password as string;
 
-    this.authService.signup(username, email, password).subscribe({
+    this.authService.signup(firstName, secondName, email, telephone1, telephone2, address, postalCode, companyName, companyAddress, companyPostalCode, password).subscribe({
       next: () => {
         window.alert('Data submitted!');
         this.signupForm.reset()
