@@ -1,42 +1,37 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, NgModule, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Chart } from 'chart.js/auto';
+import { Chart } from 'chart.js';
 
 @Component({
-  selector: 'app-admin-chart',
+  selector: 'app-system-chart',
   imports: [CommonModule, FormsModule],
-  templateUrl: './admin-chart.component.html',
-  styleUrl: './admin-chart.component.css'
+  templateUrl: './system-chart.component.html',
+  styleUrl: './system-chart.component.css'
 })
-export class AdminChartComponent implements AfterViewInit{
+export class SystemChartComponent implements AfterViewInit{
   @ViewChild('lineChartCanvas') lineChartCanvas!: ElementRef<HTMLCanvasElement>;
   private chart: Chart | undefined;
 
+  // Filter states
+  selectedFilter: string = 'Memory'; // Default to "Employers" as in the screenshot
+  selectedTimeframe: string = 'Weekly'; // Default to "Annually" as in the screenshot
 
-  selectedFilter: string = 'All'; 
-  selectedTimeframe: string = 'Daily'; 
-
-
+  // Sample data for different filters and timeframes
   private dataMap: { [key: string]: { [key: string]: number[] } } = {
-    All: {
-      Daily: [100, 120, 110, 130, 150, 140, 130, 70, 90, 80, 110, 120],
-      Weekly: [500, 600, 550, 650, 700, 680, 620, 300, 450, 400, 550, 600],
-      Annually: [2000, 2500, 2200, 3000, 3500, 3200, 2800, 1348, 2000, 1800, 2500, 3000]
+    Memory: {
+      Daily: [60, 42, 31, 10, 15, 14, 13, 70, 90, 80, 90, 70],
+      Weekly: [50, 60, 55, 65, 70, 68, 62, 30, 45, 40, 55, 60],
+      Annually: [90, 50, 22, 30, 35, 32, 80, 48, 20, 80, 50, 30]
     },
-    Employers: {
+    CPU: {
       Daily: [50, 60, 55, 65, 75, 70, 65, 35, 45, 40, 55, 60],
-      Weekly: [250, 300, 275, 325, 350, 340, 310, 150, 225, 200, 275, 300],
-      Annually: [1000, 1250, 1100, 1500, 1750, 1600, 1400, 674, 1000, 900, 1250, 1500]
-    },
-    JobSeekers: {
-      Daily: [150, 180, 165, 195, 225, 210, 195, 105, 135, 120, 165, 180],
-      Weekly: [750, 900, 825, 975, 1050, 1020, 930, 450, 675, 600, 825, 900],
-      Annually: [3000, 3750, 3300, 4500, 5250, 4800, 4200, 2022, 3000, 2700, 3750, 4500]
+      Weekly: [50, 30, 75, 35, 50, 40, 30, 50, 25, 20, 75, 30],
+      Annually: [90, 70, 62, 30, 55, 62, 80, 48, 90, 80, 50, 30]
     }
   };
 
-  // timeframes labels
+  // Labels for different timeframes
   private labelsMap: { [key: string]: string[] } = {
     Daily: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7', 'Day 8', 'Day 9', 'Day 10', 'Day 11', 'Day 12'],
     Weekly: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6', 'Week 7', 'Week 8', 'Week 9', 'Week 10', 'Week 11', 'Week 12'],
@@ -45,9 +40,9 @@ export class AdminChartComponent implements AfterViewInit{
 
   // Y-axis max values for different timeframes
   private yAxisMaxMap: { [key: string]: number } = {
-    Daily: 300,
-    Weekly: 1500,
-    Annually: 6000
+    Daily: 100,
+    Weekly: 100,
+    Annually: 100
   };
 
   ngAfterViewInit(): void {
@@ -69,7 +64,7 @@ export class AdminChartComponent implements AfterViewInit{
         labels: this.labelsMap[this.selectedTimeframe],
         datasets: [
           {
-            label: 'Users',
+            label: 'System',
             data: this.dataMap[this.selectedFilter][this.selectedTimeframe],
             fill: true,
             backgroundColor: gradient,
@@ -117,7 +112,7 @@ export class AdminChartComponent implements AfterViewInit{
               color: '#A0A0A0',
               callback: (value) => {
                 if (value === 0) return '0';
-                return `${Number(value) / 1000}k`;
+                return `${Number(value)}`;
               }
             },
             grid: {
@@ -158,3 +153,4 @@ export class AdminChartComponent implements AfterViewInit{
     }
   }
 }
+

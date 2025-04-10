@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 interface User {
   name: string;
@@ -32,11 +32,23 @@ export class AdminUserManagementComponent implements OnInit {
 
   users: User[] = [];
   filterForm: FormGroup;
+  userForm: FormGroup;
+  selectedUser: User | null = null;
+  isModalOpen: boolean = false;
+  isEditMode: boolean = false;
 
   constructor(private fb: FormBuilder) {
+    // Filter form for role and search
     this.filterForm = this.fb.group({
       roleFilter: ['All'],
       searchQuery: ['']
+    });
+
+    // User form for editing user details
+    this.userForm = this.fb.group({
+      name: ['', Validators.required],
+      role: ['', Validators.required],
+      status: ['', Validators.required]
     });
   }
 
@@ -73,16 +85,54 @@ export class AdminUserManagementComponent implements OnInit {
     });
   }
 
+  openModal(user: User, mode: 'view' | 'edit'): void {
+    this.selectedUser = { ...user }; // Create a copy to avoid direct mutation
+    this.isModalOpen = true;
+    this.isEditMode = mode === 'edit';
+
+    // Populate the form with user data
+    this.userForm.patchValue({
+      name: this.selectedUser.name,
+      role: this.selectedUser.role,
+      status: this.selectedUser.status
+    });
+
+    // Disable form in view mode
+    if (!this.isEditMode) {
+      this.userForm.disable();
+    } else {
+      this.userForm.enable();
+    }
+  }
+
+  closeModal(): void {
+    this.isModalOpen = false;
+    this.selectedUser = null;
+    this.isEditMode = false;
+    this.userForm.reset();
+  }
+
+  saveUser(): void {
+    if (this.userForm.valid && this.selectedUser) {
+      const updatedUser = { ...this.selectedUser, ...this.userForm.value };
+      const userIndex = this.originalUsers.findIndex(user => user.name === this.selectedUser!.name);
+      if (userIndex !== -1) {
+        this.originalUsers[userIndex] = updatedUser;
+      }
+      this.applyFilters(); // Reapply filters to update the table
+      this.closeModal();
+    }
+  }
+
   viewUser(user: User) {
-    console.log('View user:', user);
+    this.openModal(user, 'view');
   }
 
   editUser(user: User) {
-    console.log('Edit user:', user);
+    this.openModal(user, 'edit');
   }
 
   deleteUser(user: User) {
-    console.log('Delete user:', user);
     this.originalUsers = this.originalUsers.filter(u => u.name !== user.name);
     this.applyFilters();
   }
