@@ -26,7 +26,7 @@
                 <span *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched">Password is required.</span>
               </div>
         </div>  
-        <button type="submit" [disabled]="loginForm.invalid" class="primary-btn mt-10">Login</button>
+        <button type="submit" class="primary-btn mt-10">Login</button>
         </form>
     </div>
 </main>

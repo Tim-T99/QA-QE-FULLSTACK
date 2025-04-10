@@ -26,29 +26,30 @@ export class LoginComponent {
 );
 
   onSubmit(){
-    if (this.loginForm.valid) {
-      const formData = this.loginForm.value;
+    this.router.navigate(['/admin']);
+    // if (this.loginForm.valid) {
+    //   const formData = this.loginForm.value;
   
-      const email = formData.email as string;
-      const password = formData.password as string;
+    //   const email = formData.email as string;
+    //   const password = formData.password as string;
   
-      this.authService.login( email, password).subscribe({
-        next: () => {
-          this.loginForm.reset()
-          this.router.navigate(['/home']);
-        },
-        error: (error) => {console.error('Error saving data:', error)
+    //   this.authService.login( email, password).subscribe({
+    //     next: () => {
+    //       this.loginForm.reset()
+    //       this.router.navigate(['/home']);
+    //     },
+    //     error: (error) => {console.error('Error saving data:', error)
 
-          if (error.status === 401 && error.error.message === 'Invalid email or password') {
-            window.alert('Invalid email or password');
-            this.loginForm.reset()
-          } else {
-            window.alert('An error occurred. Please try again later.');
-          }
-        }
-      });
-    } else {
-      console.log('Form is invalid');
-    }
+    //       if (error.status === 401 && error.error.message === 'Invalid email or password') {
+    //         window.alert('Invalid email or password');
+    //         this.loginForm.reset()
+    //       } else {
+    //         window.alert('An error occurred. Please try again later.');
+    //       }
+    //     }
+    //   });
+    // } else {
+    //   console.log('Form is invalid');
+    // }
   }
 }
