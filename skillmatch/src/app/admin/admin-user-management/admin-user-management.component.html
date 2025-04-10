@@ -1,1 +1,104 @@
-<p>admin-user-management works!</p>
+<div class="grid grid-cols-2 lg:flex lg:flex-row items-center mt-10 gap-5">
+    <div class="w-[50%] min-h-[70px] bg-[#f0f0f0] p-2 rounded-md text-[#000d1c] flex flex-col justify-center">
+        <h3 class="font-bold">Applications</h3>
+        <p>12.5K</p>
+    </div>
+    <div class="w-[50%] min-h-[70px] bg-[#f0f0f0] p-2 rounded-md text-[#000d1c] flex flex-col justify-center">
+        <h3 class="font-bold">Interviews scheduled</h3>
+        <p>4.2K</p>
+    </div>
+    <div class="w-[50%] min-h-[70px] bg-[#f0f0f0] p-2 rounded-md text-[#000d1c] flex flex-col justify-center">
+        <h3 class="font-bold">Job openings</h3>
+        <p>10.5K</p>
+    </div>
+</div>
+
+<div class="p-4 bg-[#000d1c] min-h-screen">
+  <h2 class="text-md font-semibold text-[#f0f0f0] mb-4">User Management</h2>
+
+  <!-- Filter and Search Section -->
+  <form [formGroup]="filterForm" class="flex flex-col sm:flex-row sm:space-x-4 mb-4 items-center">
+    <!-- Role Filter -->
+    <div class="mb-4 sm:mb-0">
+      <label for="roleFilter" class="text-[#f0f0f0] text-sm font-semibold mr-2">Filter by Role:</label>
+      <select
+        id="roleFilter"
+        formControlName="roleFilter"
+        class="px-3 py-2 bg-[#1a2a44] text-[#f0f0f0] border border-[#f0f0f0] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff4900]"
+      >
+        <option value="All">All</option>
+        <option value="Employer">Employer</option>
+        <option value="Seeker">Seeker</option>
+      </select>
+    </div>
+
+    <!-- Search Input -->
+    <div class="flex-1">
+      <label for="searchQuery" class="text-[#f0f0f0] text-sm font-semibold mr-2">Search by Name:</label>
+      <input
+        id="searchQuery"
+        formControlName="searchQuery"
+        type="text"
+        placeholder="Enter user name..."
+        class="w-full sm:w-64 px-3 py-2 bg-[#1a2a44] text-[#f0f0f0] border border-[#f0f0f0] rounded-lg focus:outline-none focus:ring-2 focus:ring-[#ff4900]"
+      />
+    </div>
+
+    <!-- Clear Button -->
+    <button
+      (click)="clearFilters()"
+      class="px-4 py-2 bg-[#ff4900] text-[#f0f0f0] rounded-lg hover:bg-[#e04300]"
+    >
+      Clear
+    </button>
+  </form>
+
+  <!-- Table -->
+  <div class="overflow-x-auto">
+    <table class="min-w-full shadow-md rounded-lg">
+      <thead>
+        <tr class="bg-[#f0f0f0] text-[#000d1c] uppercase text-sm leading-normal rounded-md">
+          <th class="py-3 px-6 text-left">Name</th>
+          <th class="py-3 px-6 text-left">Role</th>
+          <th class="py-3 px-6 text-left">Status</th>
+          <th class="py-3 px-6 text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody class="text-[#f0f0f0] text-sm font-light">
+        <tr *ngFor="let user of users" class="border-b border-gray-200 hover:border-[#ff4900] bg-[#1a2a44]">
+          <td class="py-3 px-6 text-left whitespace-nowrap">{{ user.name }}</td>
+          <td class="py-3 px-6 text-left">{{ user.role }}</td>
+          <td class="py-3 px-6 text-left">
+            <span
+              [ngClass]="{
+                'text-green-500': user.status === 'Active',
+                'text-red-500': user.status === 'Inactive',
+                'text-orange-500': user.status === 'Suspended'
+              }"
+            >
+              {{ user.status }}
+            </span>
+          </td>
+          <td class="py-3 px-6 text-center">
+            <button (click)="viewUser(user)" class="text-blue-500 hover:text-blue-700 mr-2">
+              <svg class="w-5 h-5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+              </svg>
+            </button>
+            <button (click)="editUser(user)" class="text-yellow-500 hover:text-yellow-700 mr-2">
+              <svg class="w-5 h-5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
+              </svg>
+            </button>
+            <button (click)="deleteUser(user)" class="text-red-500 hover:text-red-700">
+              <svg class="w-5 h-5 inline" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5-4h4m-4 0V3a1 1 0 011-1h2a1 1 0 011 1v1m-7 3h10"></path>
+              </svg>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -9,6 +9,7 @@ import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard
 import { AdminUserManagementComponent } from './admin/admin-user-management/admin-user-management.component';
 import { AdminAccountComponent } from './admin/admin-account/admin-account.component';
 import { AdminChatComponent } from './admin/admin-chat/admin-chat.component';
+import { AdminSystemComponent } from './admin/admin-system/admin-system.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent},
@@ -21,6 +22,7 @@ export const routes: Routes = [
         {path: 'adminUserMgmt', component: AdminUserManagementComponent},
         {path: 'adminAccount', component: AdminAccountComponent},
         {path: 'adminChat', component: AdminChatComponent},
+        {path: 'adminSystem', component: AdminSystemComponent},
         {path: '', redirectTo: 'adminDash', pathMatch:'full'}
     ]}
 ];
