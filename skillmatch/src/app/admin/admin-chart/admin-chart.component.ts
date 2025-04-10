@@ -60,7 +60,7 @@ export class AdminChartComponent implements AfterViewInit{
 
     // Create a gradient for the fill
     const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-    gradient.addColorStop(0, 'rgba(200, 200, 200, 0.3)'); // Light gray with opacity
+    gradient.addColorStop(0, '#000d1c');
     gradient.addColorStop(1, 'rgba(200, 200, 200, 0)');
 
     this.chart = new Chart(ctx, {
