@@ -9,13 +9,13 @@ interface ChatMessage {
 }
 
 @Component({
-  selector: 'app-admin-chat',
+  selector: 'app-seeker-chat',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './admin-chat.component.html',
-  styleUrl: './admin-chat.component.css'
+  templateUrl: './seeker-chat.component.html',
+  styleUrl: './seeker-chat.component.css'
 })
-export class AdminChatComponent implements OnInit, AfterViewChecked {
+export class SeekerChatComponent implements OnInit, AfterViewChecked {
   @ViewChild('chatContainer') private chatContainer!: ElementRef;
 
   chatForm: FormGroup<{
@@ -23,7 +23,7 @@ export class AdminChatComponent implements OnInit, AfterViewChecked {
   }>;
   messages: ChatMessage[] = [
     {
-      text: 'Hello! I’m your admin assistant. Ask about users, jobs, or system analytics, and I’ll help once Gemini is integrated!',
+      text: 'Hello! I’m your job assistant. Ask me about jobs, and I’ll help once Gemini is integrated!',
       isUser: false,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
@@ -36,7 +36,7 @@ export class AdminChatComponent implements OnInit, AfterViewChecked {
   }
 
   ngOnInit(): void {
-    // Placeholder for Gemini connection (e.g., initialize API client)
+    // Placeholder for initial Gemini connection (e.g., authenticate API)
     // TODO: Initialize Gemini client when integrated
   }
 
@@ -50,7 +50,7 @@ export class AdminChatComponent implements OnInit, AfterViewChecked {
 
     if (!text) return;
 
-    // Add admin message
+    // Add user message
     this.messages.push({
       text,
       isUser: true,
@@ -66,7 +66,7 @@ export class AdminChatComponent implements OnInit, AfterViewChecked {
 
   private handleBotResponse(userMessage: string): void {
     // TODO: Replace with Gemini API call to query database
-    // Example: const response = await gemini.query(userMessage, { db: 'users' });
+    // Example: const response = await gemini.query(userMessage, { db: 'jobs' });
     const botMessage = this.generateMockResponse(userMessage);
 
     setTimeout(() => {
@@ -79,15 +79,13 @@ export class AdminChatComponent implements OnInit, AfterViewChecked {
   }
 
   private generateMockResponse(userMessage: string): string {
-    // Mock responses tailored for admin tasks
-    if (userMessage.toLowerCase().includes('user') || userMessage.toLowerCase().includes('account')) {
-      return 'I’ll soon manage user accounts via the database! Try asking to list users or update a status.';
-    } else if (userMessage.toLowerCase().includes('job') || userMessage.toLowerCase().includes('posting')) {
-      return 'I can handle job postings once Gemini is connected. Ask about active jobs or analytics!';
-    } else if (userMessage.toLowerCase().includes('analytics') || userMessage.toLowerCase().includes('report')) {
-      return 'System analytics will be available with Gemini. Ask for user activity or job stats!';
+    // Mock responses until Gemini is integrated
+    if (userMessage.toLowerCase().includes('job')) {
+      return 'I’ll soon be able to search jobs in the database! Try asking about specific roles or locations.';
+    } else if (userMessage.toLowerCase().includes('interview')) {
+      return 'Interview details will come from the database once Gemini is connected. Ask about a job ID!';
     } else {
-      return 'I’m preparing to assist with Gemini. Try asking about users, jobs, or analytics!';
+      return 'I’m not sure about that yet, but I’ll get smarter with Gemini. Ask about jobs or interviews!';
     }
   }
 

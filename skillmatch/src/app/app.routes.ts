@@ -10,6 +10,16 @@ import { AdminUserManagementComponent } from './admin/admin-user-management/admi
 import { AdminAccountComponent } from './admin/admin-account/admin-account.component';
 import { AdminChatComponent } from './admin/admin-chat/admin-chat.component';
 import { AdminSystemComponent } from './admin/admin-system/admin-system.component';
+import { EmployerLayoutComponent } from './employer/employer-layout/employer-layout.component';
+import { EmployerDashboardComponent } from './employer/employer-dashboard/employer-dashboard.component';
+import { EmployerAccountComponent } from './employer/employer-account/employer-account.component';
+import { EmployerChatComponent } from './employer/employer-chat/employer-chat.component';
+import { EmployerJobsComponent } from './employer/employer-jobs/employer-jobs.component';
+import { SeekerLayoutComponent } from './seeker/seeker-layout/seeker-layout.component';
+import { SeekerChatComponent } from './seeker/seeker-chat/seeker-chat.component';
+import { SeekerAccountComponent } from './seeker/seeker-account/seeker-account.component';
+import { SeekerDashboardComponent } from './seeker/seeker-dashboard/seeker-dashboard.component';
+import { SeekerJobsComponent } from './seeker/seeker-jobs/seeker-jobs.component';
 
 export const routes: Routes = [
     { path: '', component: LandingComponent},
@@ -24,5 +34,19 @@ export const routes: Routes = [
         {path: 'adminChat', component: AdminChatComponent},
         {path: 'adminSystem', component: AdminSystemComponent},
         {path: '', redirectTo: 'adminDash', pathMatch:'full'}
+    ]},
+    { path: 'employer', component: EmployerLayoutComponent, children:[
+        {path: 'employerDash', component: EmployerDashboardComponent},
+        {path: 'employerJobs', component: EmployerJobsComponent},
+        {path: 'employerAccount', component: EmployerAccountComponent},
+        {path: 'employerChat', component: EmployerChatComponent},
+        {path: '', redirectTo: 'employerDash', pathMatch:'full'}
+    ]},
+    { path: 'seeker', component: SeekerLayoutComponent, children:[
+        {path: 'seekerDash', component: SeekerDashboardComponent},
+        {path: 'seekerJobs', component: SeekerJobsComponent},
+        {path: 'seekerAccount', component: SeekerAccountComponent},
+        {path: 'seekerChat', component: SeekerChatComponent},
+        {path: '', redirectTo: 'seekerDash', pathMatch:'full'}
     ]}
 ];

@@ -52,42 +52,41 @@ export class SeekerSignupComponent implements OnInit { // Implement OnInit
   }
 
   onSubmit() {
-    if (this.signupForm.valid) {
-      const formData = this.signupForm.value;
+    this.router.navigate(['/seeker'])
+  //   if (this.signupForm.valid) {
+  //     const formData = this.signupForm.value;
 
-      const firstName = formData.firstName as string;
-      const secondName = formData.secondName as string; // Fix: was firstName
-      const email = formData.email as string;
-      const telephone1 = formData.telephone1 as string; // Fix: was firstName
-      const telephone2 = formData.telephone2 as string; // Fix: was firstName
-      const address = formData.address as string; // Fix: was firstName
-      const postalCode = formData.postalCode as string; // Fix: was firstName
-      const edLevel = formData.edLevel as string; // Fix: was firstName
-      const institution = formData.institution as string; // Fix: was firstName
-      const skills = formData.skills as string[];
-      const password = formData.password as string;
+  //     const firstName = formData.firstName as string;
+  //     const secondName = formData.secondName as string; // Fix: was firstName
+  //     const email = formData.email as string;
+  //     const telephone1 = formData.telephone1 as string; // Fix: was firstName
+  //     const telephone2 = formData.telephone2 as string; // Fix: was firstName
+  //     const address = formData.address as string; // Fix: was firstName
+  //     const postalCode = formData.postalCode as string; // Fix: was firstName
+  //     const edLevel = formData.edLevel as string; // Fix: was firstName
+  //     const institution = formData.institution as string; // Fix: was firstName
+  //     const skills = formData.skills as string[];
+  //     const password = formData.password as string;
 
-      // Uncomment and use your authService logic here
-      /*
-      this.authService.signup(firstName, secondName, email, telephone1, telephone2, address, postalCode, companyName, companyAddress, skills, password).subscribe({
-        next: () => {
-          window.alert('Data submitted!');
-          this.signupForm.reset();
-          this.router.navigate(['/home']);
-        },
-        error: (error) => {
-          console.error('Error saving data:', error);
-          if (error.status === 400 && error.error.message === 'User already exists') {
-            window.alert('User already exists.');
-            this.signupForm.reset();
-          } else {
-            window.alert('An error occurred. Please try again later.');
-          }
-        }
-      });
-      */
-    } else {
-      window.alert('Please fill all fields');
-    }
+  //     this.authService.signup(firstName, secondName, email, telephone1, telephone2, address, postalCode, companyName, companyAddress, skills, password).subscribe({
+  //       next: () => {
+  //         window.alert('Data submitted!');
+  //         this.signupForm.reset();
+  //         this.router.navigate(['/home']);
+  //       },
+  //       error: (error) => {
+  //         console.error('Error saving data:', error);
+  //         if (error.status === 400 && error.error.message === 'User already exists') {
+  //           window.alert('User already exists.');
+  //           this.signupForm.reset();
+  //         } else {
+  //           window.alert('An error occurred. Please try again later.');
+  //         }
+  //       }
+  //     });
+  //     */
+  //   } else {
+  //     window.alert('Please fill all fields');
+  //   }
   }
 }

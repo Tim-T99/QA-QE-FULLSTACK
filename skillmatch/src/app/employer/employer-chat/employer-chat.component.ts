@@ -9,13 +9,13 @@ interface ChatMessage {
 }
 
 @Component({
-  selector: 'app-admin-chat',
+  selector: 'app-employer-chat',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './admin-chat.component.html',
-  styleUrl: './admin-chat.component.css'
+  templateUrl: './employer-chat.component.html',
+  styleUrl: './employer-chat.component.css'
 })
-export class AdminChatComponent implements OnInit, AfterViewChecked {
+export class EmployerChatComponent implements OnInit, AfterViewChecked {
   @ViewChild('chatContainer') private chatContainer!: ElementRef;
 
   chatForm: FormGroup<{
@@ -23,7 +23,7 @@ export class AdminChatComponent implements OnInit, AfterViewChecked {
   }>;
   messages: ChatMessage[] = [
     {
-      text: 'Hello! I’m your admin assistant. Ask about users, jobs, or system analytics, and I’ll help once Gemini is integrated!',
+      text: 'Hello! I’m your employer assistant. Ask about candidates or job postings, and I’ll help once Gemini is integrated!',
       isUser: false,
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
@@ -50,7 +50,7 @@ export class AdminChatComponent implements OnInit, AfterViewChecked {
 
     if (!text) return;
 
-    // Add admin message
+    // Add employer message
     this.messages.push({
       text,
       isUser: true,
@@ -66,7 +66,7 @@ export class AdminChatComponent implements OnInit, AfterViewChecked {
 
   private handleBotResponse(userMessage: string): void {
     // TODO: Replace with Gemini API call to query database
-    // Example: const response = await gemini.query(userMessage, { db: 'users' });
+    // Example: const response = await gemini.query(userMessage, { db: 'candidates' });
     const botMessage = this.generateMockResponse(userMessage);
 
     setTimeout(() => {
@@ -79,15 +79,13 @@ export class AdminChatComponent implements OnInit, AfterViewChecked {
   }
 
   private generateMockResponse(userMessage: string): string {
-    // Mock responses tailored for admin tasks
-    if (userMessage.toLowerCase().includes('user') || userMessage.toLowerCase().includes('account')) {
-      return 'I’ll soon manage user accounts via the database! Try asking to list users or update a status.';
+    // Mock responses tailored for employers
+    if (userMessage.toLowerCase().includes('candidate') || userMessage.toLowerCase().includes('developer')) {
+      return 'I’ll soon search for candidates in the database! Try specifying skills like Python or experience level.';
     } else if (userMessage.toLowerCase().includes('job') || userMessage.toLowerCase().includes('posting')) {
-      return 'I can handle job postings once Gemini is connected. Ask about active jobs or analytics!';
-    } else if (userMessage.toLowerCase().includes('analytics') || userMessage.toLowerCase().includes('report')) {
-      return 'System analytics will be available with Gemini. Ask for user activity or job stats!';
+      return 'I can help manage job postings once Gemini is connected. Ask about creating a new job!';
     } else {
-      return 'I’m preparing to assist with Gemini. Try asking about users, jobs, or analytics!';
+      return 'I’m getting ready to assist with Gemini. Ask about candidates or job postings for now!';
     }
   }
 
