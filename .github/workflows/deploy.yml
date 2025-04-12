@@ -58,6 +58,6 @@ jobs:
       # Deploy to S3
       - name: Deploy to S3
         run: |
-          aws s3 sync dist/your-app-name/ s3://${{ secrets.AWS_S3_BUCKET }} --delete --acl public-read
+          aws s3 sync dist/skillmatch/ s3://${{ secrets.AWS_S3_BUCKET }} --delete --acl public-read
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
